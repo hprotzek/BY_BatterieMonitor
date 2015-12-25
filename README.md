@@ -12,10 +12,14 @@
 5. [Changelog](#5-changelog) 
 
 ## 1. Funktionsumfang
-Dieses Modul liest alle Batterie-Variablen von HomeMatic und Z-Wave Aktoren aus, gibt die Informationen in einem Array zurück,
-stellt alle Batterie-Aktoren in einer Tabelle dar und erzeugt eine 2. Tabelle mit allen Aktoren die eine leere Batterie haben.
+Dieses Modul liest alle Batterie-Variablen von Aktoren aus, gibt die Informationen in einem Array zurück, stellt alle
+Batterie-Aktoren in einer Tabelle dar und erzeugt eine 2. Tabelle mit allen Aktoren die eine leere Batterie haben.
 
-In der Modul-Instanz könnt ihr folgende Einstellungen vornehmen:
+*Aktuell unterstützte Hersteller:**
+- HomeMatic
+- Z-Wave
+
+**In der Modul-Instanz könnt ihr folgende Einstellungen vornehmen:**
 - Hintergrundfarbe (HEX Farbcode)
 - Textfarbe (HEX Farbcode)
 - Textfarbe OK (HEX Farbcode)
