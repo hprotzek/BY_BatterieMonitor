@@ -81,10 +81,10 @@ class BatterieMonitor extends IPSModule
     public function Alle_Auslesen()
     {
     		$Batterien_AR = $this->ReadBatteryStates();
+    		@ksort($Batterien_AR["Alle"]);
     		$this->HTMLausgabeGenerieren($Batterien_AR, "Alle");
     		if (isset($Batterien_AR["Alle"]))
     		{
-    				ksort($Batterien_AR["Alle"]);
     				return $Batterien_AR["Alle"];
     		}
     		else
@@ -96,10 +96,10 @@ class BatterieMonitor extends IPSModule
     public function Leere_Auslesen()
     {
     		$Batterien_AR = $this->ReadBatteryStates();
+    		@ksort($Batterien_AR["Leer"]);
     		$this->HTMLausgabeGenerieren($Batterien_AR, "Leer");
     		if (isset($Batterien_AR["Leer"]))
     		{
-    				ksort($Batterien_AR["Leer"]);
     				return $Batterien_AR["Leer"];
     		}
     		else
