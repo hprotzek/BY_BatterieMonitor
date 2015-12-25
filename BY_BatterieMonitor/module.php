@@ -169,7 +169,14 @@ class BatterieMonitor extends IPSModule
 						  	}
 						}
 				}
-				return $Batterien_AR;
+				if (isset($Batterien_AR))
+				{
+						return $Batterien_AR;
+				}
+				else
+				{
+						return false;
+				}
     }
 
 		private function HTMLausgabeGenerieren($BatterienAR, $AlleLeer)
