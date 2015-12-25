@@ -133,14 +133,14 @@ class BatterieMonitor extends IPSModule
 				.bt {border-collapse;border-spacing:4;}
 				.bt td'.$this->InstanceID.' {font-family:Arial, sans-serif;font-size:'.$this->ReadPropertyString("TextSize").'px;color:#'.$TextFarbcode.';padding:1px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
 				.bt th'.$this->InstanceID.' {font-family:Arial, sans-serif;font-size:'.$this->ReadPropertyString("TextSize").'px;color:#'.$TextFarbcode.';padding:1px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-				.bt .tb-title'.$this->InstanceID.'{font-size:'.$this->ReadPropertyString("TextSize").'px;font-weight:bold;background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcode.';text-align:center}
+				.bt .tb-title'.$this->InstanceID.'{font-size:'.$this->ReadPropertyString("TextSize").'px;background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcode.';text-align:center}
 				.bt .tb-content'.$this->InstanceID.'{font-size:'.$this->ReadPropertyString("TextSize").'px;background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcode.';text-align:center}
 				</style>';
 			
 				$TitelAR = array("Aktor","Batterie");
 				$HTML = '<html>'.$HTML_CSS_Style;
 				$HTML .= '<table class="bt">';
-				$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'">'.$TitelAR[0].'</th><th class="tb-title'.$this->InstanceID.'">'.$TitelAR[1].'</th></tr>';
+				$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[0].'</th><th class="tb-title'.$this->InstanceID.'">'.$TitelAR[1].'</b></th></tr>';
 				
 				if ($AlleLeer == "Alle") {
 						for ($h=0; $h<count($BatterienAR["Alle"]); $h++) {
@@ -162,7 +162,7 @@ class BatterieMonitor extends IPSModule
 						}
 						else
 						{
-								$HTML .= '<tr><th colspan="2">Keine Aktoren mit leeren Batterien vorhanden!</th></tr>';
+								$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'" colspan="2">Keine Aktoren mit leeren Batterien vorhanden!</th></tr>';
 						}
 						$HTML .= '</table></html>';
 						$this->SetValueString("TabelleBatteryLowVAR", $HTML);
