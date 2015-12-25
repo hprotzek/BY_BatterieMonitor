@@ -105,15 +105,15 @@ class BatterieMonitor extends IPSModule
 										$LowBat = GetValueBoolean($VarID);
 										if ($LowBat === true)
 										{
-									   		$Batterien_AR["Alle"]["Name"] = IPS_GetName($InstanzID);
-									   		$Batterien_AR["Alle"]["Batterie"] = "LEER";
-									   		$Batterien_AR["Leer"]["Name"] = IPS_GetName($InstanzID);
-									   		$Batterien_AR["Leer"]["Batterie"] = "LEER";
+									   		$Batterien_AR["Alle"][]["Name"] = IPS_GetName($InstanzID);
+									   		$Batterien_AR["Alle"][]["Batterie"] = "LEER";
+									   		$Batterien_AR["Leer"][]["Name"] = IPS_GetName($InstanzID);
+									   		$Batterien_AR["Leer"][]["Batterie"] = "LEER";
 										}
 										else
 										{
-									   		$Batterien_AR["Alle"]["Name"] = IPS_GetName($InstanzID);
-									   		$Batterien_AR["Alle"]["Batterie"] = "OK";
+									   		$Batterien_AR["Alle"][]["Name"] = IPS_GetName($InstanzID);
+									   		$Batterien_AR["Alle"][]["Batterie"] = "OK";
 										}
 						  	}
 						  	
@@ -125,15 +125,15 @@ class BatterieMonitor extends IPSModule
 										$LowBat = GetValueBoolean($VarID);
 										if ($LowBat === true)
 										{
-									   		$Batterien_AR["Alle"]["Name"] = IPS_GetName($InstanzID);
-									   		$Batterien_AR["Alle"]["Batterie"] = "LEER";
-									   		$Batterien_AR["Leer"]["Name"] = IPS_GetName($InstanzID);
-									   		$Batterien_AR["Leer"]["Batterie"] = "LEER";
+									   		$Batterien_AR["Alle"][]["Name"] = IPS_GetName($InstanzID);
+									   		$Batterien_AR["Alle"][]["Batterie"] = "LEER";
+									   		$Batterien_AR["Leer"][]["Name"] = IPS_GetName($InstanzID);
+									   		$Batterien_AR["Leer"][]["Batterie"] = "LEER";
 										}
 										else
 										{
-									   		$Batterien_AR["Alle"]["Name"] = IPS_GetName($InstanzID);
-									   		$Batterien_AR["Alle"]["Batterie"] = "OK";
+									   		$Batterien_AR["Alle"][]["Name"] = IPS_GetName($InstanzID);
+									   		$Batterien_AR["Alle"][]["Batterie"] = "OK";
 										}
 						  	}
 						}
