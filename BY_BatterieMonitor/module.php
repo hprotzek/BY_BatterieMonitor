@@ -82,7 +82,7 @@ class BatterieMonitor extends IPSModule
     {
     		$Batterien_AR = $this->ReadBatteryStates();
     		$this->HTMLausgabeGenerieren($Batterien_AR, "Alle");
-    		if (isset($BatterienAR["Alle"]))
+    		if (isset($Batterien_AR["Alle"]))
     		{
     				ksort($Batterien_AR["Alle"]);
     				return $Batterien_AR["Alle"];
@@ -97,7 +97,7 @@ class BatterieMonitor extends IPSModule
     {
     		$Batterien_AR = $this->ReadBatteryStates();
     		$this->HTMLausgabeGenerieren($Batterien_AR, "Leer");
-    		if (isset($BatterienAR["Leer"]))
+    		if (isset($Batterien_AR["Leer"]))
     		{
     				ksort($Batterien_AR["Leer"]);
     				return $Batterien_AR["Leer"];
@@ -121,9 +121,6 @@ class BatterieMonitor extends IPSModule
 						    $VarID = @IPS_GetObjectIDByIdent('LowBatteryVar', $InstanzID);
 								if ($VarID !== false)
 								{
-										$Var = IPS_GetVariable($VarID);
-										$VarLastUpdated = $Var["VariableUpdated"];
-										$VarLastUpdatedDiffSek = time() - $VarLastUpdated;
 										$LowBat = GetValueBoolean($VarID);
 										if ($LowBat === true)
 										{
@@ -140,6 +137,10 @@ class BatterieMonitor extends IPSModule
 						    $VarID = @IPS_GetObjectIDByIdent('LOWBAT', $InstanzID);
 								if ($VarID !== false)
 								{
+										$Var = IPS_GetVariable($VarID);
+										$VarLastUpdated = $Var["VariableUpdated"];
+										$VarLastUpdatedDiffSek = time() - $VarLastUpdated;
+										
 										$LowBat = GetValueBoolean($VarID);
 										if ($LowBat === true)
 										{
