@@ -91,8 +91,8 @@ class BatterieMonitor extends IPSModule
     
     private function ReadBatteryStates()
     {
-    		$InstanzIDsListAll[] = IPS_GetInstanceListByModuleID("{EE4A81C6-5C90-4DB7-AD2F-F6BBD521412E}");  // HomeMatic
-    		$InstanzIDsListAll[] = IPS_GetInstanceListByModuleID("{101352E1-88C7-4F16-998B-E20D50779AF6}");  // Z-Wave
+    		$InstanzIDsListAll = IPS_GetInstanceListByModuleID("{EE4A81C6-5C90-4DB7-AD2F-F6BBD521412E}");  // HomeMatic
+    		$InstanzIDsListAll = IPS_GetInstanceListByModuleID("{101352E1-88C7-4F16-998B-E20D50779AF6}");  // Z-Wave
     		
     		foreach ($InstanzIDsListAll as $InstanzIDsList)
     		{
