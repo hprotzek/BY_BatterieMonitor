@@ -1,9 +1,4 @@
 <?
-/**** 2do ***********************************************************************************************
-> Letzte Aktualisierung der "LowBatVAR" mit in Array und HTML-Ausgabe (ganz rechts) einbauen
-********************************************************************************************************/
-
-
 class BatterieMonitor extends IPSModule
 {
 
@@ -125,6 +120,9 @@ class BatterieMonitor extends IPSModule
 						    $VarID = @IPS_GetObjectIDByIdent('LowBatteryVar', $InstanzID);
 								if ($VarID !== false)
 								{
+										$Var = IPS_GetVariable($VarID);
+										$VarLastUpdated = $Var["VariableUpdated"];
+										$VarLastUpdatedDiffSek = time() - $VarLastUpdated;
 										$LowBat = GetValueBoolean($VarID);
 										if ($LowBat === true)
 										{
@@ -171,7 +169,15 @@ class BatterieMonitor extends IPSModule
 						  	}
 						}
 				}
-				return $Batterien_AR;
+				
+				if (isset($BatterienAR))
+				{
+						return $Batterien_AR;
+				}
+				else
+				{
+						return false;
+				}
     }
 
 		private function HTMLausgabeGenerieren($BatterienAR, $AlleLeer)
@@ -198,18 +204,25 @@ class BatterieMonitor extends IPSModule
 				$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[0].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[1].'</b></th></tr>';
 				
 				if ($AlleLeer == "Alle") {
-						foreach ($BatterienAR["Alle"] as $AktorName => $BatterieZustand) {
-				    		if ($BatterieZustand == "OK")
-								{
-										$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'">'.$AktorName.'</th><th class="tb-contentOK'.$this->InstanceID.'">'.$BatterieZustand.'</th></tr>';
+						if (isset($BatterienAR["Alle"]))
+						{
+								foreach ($BatterienAR["Alle"] as $AktorName => $BatterieZustand) {
+						    		if ($BatterieZustand == "OK")
+										{
+												$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'">'.$AktorName.'</th><th class="tb-contentOK'.$this->InstanceID.'">'.$BatterieZustand.'</th></tr>';
+										}
+										elseif ($BatterieZustand == "LEER")
+										{
+												$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'">'.$AktorName.'</th><th class="tb-contentLOW'.$this->InstanceID.'">'.$BatterieZustand.'</th></tr>';
+										}
 								}
-								elseif ($BatterieZustand == "LEER")
-								{
-										$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'">'.$AktorName.'</th><th class="tb-contentLOW'.$this->InstanceID.'">'.$BatterieZustand.'</th></tr>';
-								}
+								$HTML .= '</table></html>';
+								$this->SetValueString("TabelleBatteryAlleVAR", $HTML);
 						}
-						$HTML .= '</table></html>';
-						$this->SetValueString("TabelleBatteryAlleVAR", $HTML);
+						else
+						{
+								$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'" colspan="2">Keine Aktoren mit Batterien gefunden!</th></tr>';
+						}
 				}
 				elseif ($AlleLeer == "Leer") {
 						if (isset($BatterienAR["Leer"]))
