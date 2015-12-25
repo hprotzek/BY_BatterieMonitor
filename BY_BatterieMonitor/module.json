@@ -1,0 +1,14 @@
+{
+    "id": "{2EAA49BA-AD65-48C9-A3AD-24A277DB4A20}",
+    "name": "BatterieMonitor",
+    "type": 3,
+    "vendor": "",
+    "aliases": 
+    [
+        "BatterieMonitor"
+    ],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "BMON"
+}
