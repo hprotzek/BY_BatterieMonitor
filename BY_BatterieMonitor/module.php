@@ -59,8 +59,8 @@ class BatterieMonitor extends IPSModule
     public function Update()
     {
 				$Batterien_AR = $this->ReadBatteryStates();
-				$BATcountAlle = @count($TestAR["Alle"]);
-				$BATcountLeer = @count($TestAR["Leer"]);
+				$BATcountAlle = @count($Batterien_AR["Alle"]);
+				$BATcountLeer = @count($Batterien_AR["Leer"]);
 				$this->SetValueInteger("BatteryAktorsAnzahlVAR", $BATcountAlle);
 				$this->SetValueInteger("BatteryLowAnzahlVAR", $BATcountLeer);
 				if ($BATcountLeer == 0)
@@ -156,14 +156,15 @@ class BatterieMonitor extends IPSModule
 				$TextFarbcodeOK = $this->ReadPropertyString("TextOKFarbcode");
 				$TextFarbcodeLEER = $this->ReadPropertyString("TextLOWFarbcode");
 				$TextSize = $this->ReadPropertyString("TextSize");
+				$TextSizeTitle = $TextSize + 2;
 				$HTML_CSS_Style = '<style type="text/css">
 				.bt {border-collapse;border-spacing:4;}
-				.bt td'.$this->InstanceID.' {font-family:Arial, sans-serif;font-size:'.$this->ReadPropertyString("TextSize").'px;color:#'.$TextFarbcode.';padding:1px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-				.bt th'.$this->InstanceID.' {font-family:Arial, sans-serif;font-size:'.$this->ReadPropertyString("TextSize").'px;color:#'.$TextFarbcode.';padding:1px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-				.bt .tb-title'.$this->InstanceID.'{font-size:'.$this->ReadPropertyString("TextSize").'px;background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcode.';text-align:center}
-				.bt .tb-content'.$this->InstanceID.'{font-size:'.$this->ReadPropertyString("TextSize").'px;background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcode.';text-align:center}
-				.bt .tb-contentOK'.$this->InstanceID.'{font-size:'.$this->ReadPropertyString("TextSize").'px;background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcodeOK.';text-align:center}
-				.bt .tb-contentLOW'.$this->InstanceID.'{font-size:'.$this->ReadPropertyString("TextSize").'px;background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcodeLEER.';text-align:center}
+				.bt td'.$this->InstanceID.' {font-family:Arial, sans-serif;font-size:'.$TextSize.'px;color:#'.$TextFarbcode.';padding:1px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+				.bt th'.$this->InstanceID.' {font-family:Arial, sans-serif;font-size:'.$TextSize.'px;color:#'.$TextFarbcode.';padding:1px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+				.bt .tb-title'.$this->InstanceID.'{font-size:'.$TextSizeTitle.'px;background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcode.';text-align:center}
+				.bt .tb-content'.$this->InstanceID.'{font-size:'.$TextSize.'px;background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcode.';text-align:center}
+				.bt .tb-contentOK'.$this->InstanceID.'{font-size:'.$TextSize.'px;background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcodeOK.';text-align:center}
+				.bt .tb-contentLOW'.$this->InstanceID.'{font-size:'.$TextSize.'px;background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcodeLEER.';text-align:center}
 				</style>';
 			
 				$TitelAR = array("Aktor","Batterie");

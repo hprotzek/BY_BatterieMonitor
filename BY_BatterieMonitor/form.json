@@ -2,7 +2,7 @@
   "elements":
   [
 
-    { "type": "Label", "label": "####### BatterieMonitor v1.0 (25.12.2015 17.15Uhr) #######" },
+    { "type": "Label", "label": "####### BatterieMonitor v1.0 (25.12.2015 20.15Uhr) #######" },
     { "type": "Label", "label": "Farbcode für Schriftfarbe und Hintergrundfarbe müssen im HEX-Format eingegeben werden:" },
     { "type": "ValidationTextBox", "name": "HintergrundFarbcode", "caption": "Hintergrundfarbe" },
     { "type": "ValidationTextBox", "name": "TextFarbcode", "caption": "Schriftfarbe" },
