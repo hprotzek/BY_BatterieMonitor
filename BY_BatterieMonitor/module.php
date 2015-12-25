@@ -91,9 +91,11 @@ class BatterieMonitor extends IPSModule
     
     private function ReadBatteryStates()
     {
-    		$InstanzIDsListAll = IPS_GetInstanceListByModuleID("{EE4A81C6-5C90-4DB7-AD2F-F6BBD521412E}");  // HomeMatic
-    		$InstanzIDsListAll = IPS_GetInstanceListByModuleID("{101352E1-88C7-4F16-998B-E20D50779AF6}");  // Z-Wave
+    		$InstanzIDsListAll[] = IPS_GetInstanceListByModuleID("{EE4A81C6-5C90-4DB7-AD2F-F6BBD521412E}");  // HomeMatic
+    		$InstanzIDsListAll[] = IPS_GetInstanceListByModuleID("{101352E1-88C7-4F16-998B-E20D50779AF6}");  // Z-Wave
     		
+    		$a = 0;
+    		$l = 0;
     		foreach ($InstanzIDsListAll as $InstanzIDsList)
     		{
 						foreach ($InstanzIDsList as $InstanzID)
@@ -105,15 +107,18 @@ class BatterieMonitor extends IPSModule
 										$LowBat = GetValueBoolean($VarID);
 										if ($LowBat === true)
 										{
-									   		$Batterien_AR["Alle"][]["Name"] = IPS_GetName($InstanzID);
-									   		$Batterien_AR["Alle"][]["Batterie"] = "LEER";
-									   		$Batterien_AR["Leer"][]["Name"] = IPS_GetName($InstanzID);
-									   		$Batterien_AR["Leer"][]["Batterie"] = "LEER";
+									   		$Batterien_AR["Alle"][$a]["Name"] = IPS_GetName($InstanzID);
+									   		$Batterien_AR["Alle"][$a]["Batterie"] = "LEER";
+									   		$Batterien_AR["Leer"][$l]["Name"] = IPS_GetName($InstanzID);
+									   		$Batterien_AR["Leer"][$l]["Batterie"] = "LEER";
+									   		$a++;
+									   		$l++;
 										}
 										else
 										{
-									   		$Batterien_AR["Alle"][]["Name"] = IPS_GetName($InstanzID);
-									   		$Batterien_AR["Alle"][]["Batterie"] = "OK";
+									   		$Batterien_AR["Alle"][$a]["Name"] = IPS_GetName($InstanzID);
+									   		$Batterien_AR["Alle"][$a]["Batterie"] = "OK";
+									   		$a++;
 										}
 						  	}
 						  	
@@ -125,15 +130,18 @@ class BatterieMonitor extends IPSModule
 										$LowBat = GetValueBoolean($VarID);
 										if ($LowBat === true)
 										{
-									   		$Batterien_AR["Alle"][]["Name"] = IPS_GetName($InstanzID);
-									   		$Batterien_AR["Alle"][]["Batterie"] = "LEER";
-									   		$Batterien_AR["Leer"][]["Name"] = IPS_GetName($InstanzID);
-									   		$Batterien_AR["Leer"][]["Batterie"] = "LEER";
+									   		$Batterien_AR["Alle"][$a]["Name"] = IPS_GetName($InstanzID);
+									   		$Batterien_AR["Alle"][$a]["Batterie"] = "LEER";
+									   		$Batterien_AR["Leer"][$l]["Name"] = IPS_GetName($InstanzID);
+									   		$Batterien_AR["Leer"][$l]["Batterie"] = "LEER";
+									   		$a++;
+									   		$l++;
 										}
 										else
 										{
-									   		$Batterien_AR["Alle"][]["Name"] = IPS_GetName($InstanzID);
-									   		$Batterien_AR["Alle"][]["Batterie"] = "OK";
+									   		$Batterien_AR["Alle"][$a]["Name"] = IPS_GetName($InstanzID);
+									   		$Batterien_AR["Alle"][$a]["Batterie"] = "OK";
+									   		$a++;
 										}
 						  	}
 						}
