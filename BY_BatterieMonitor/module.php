@@ -59,8 +59,8 @@ class BatterieMonitor extends IPSModule
     public function Update()
     {
 				$Batterien_AR = $this->ReadBatteryStates();
-				ksort($Batterien_AR["Alle"]);
-				ksort($Batterien_AR["Leer"]);
+				@ksort($Batterien_AR["Alle"]);
+				@ksort($Batterien_AR["Leer"]);
 				$BATcountAlle = @count($Batterien_AR["Alle"]);
 				$BATcountLeer = @count($Batterien_AR["Leer"]);
 				$this->SetValueInteger("BatteryAktorsAnzahlVAR", $BATcountAlle);
@@ -81,16 +81,30 @@ class BatterieMonitor extends IPSModule
     {
     		$Batterien_AR = $this->ReadBatteryStates();
     		$this->HTMLausgabeGenerieren($Batterien_AR, "Alle");
-    		ksort($Batterien_AR["Alle"]);
-    		return $Batterien_AR["Alle"];
+    		if (isset($BatterienAR["Alle"]))
+    		{
+    				ksort($Batterien_AR["Alle"]);
+    				return $Batterien_AR["Alle"];
+    		}
+    		else
+    		{
+    				return false;
+    		}
     }
     
     public function Leere_Auslesen()
     {
     		$Batterien_AR = $this->ReadBatteryStates();
     		$this->HTMLausgabeGenerieren($Batterien_AR, "Leer");
-    		ksort($Batterien_AR["Leer"]);
-    		return $Batterien_AR["Leer"];
+    		if (isset($BatterienAR["Leer"]))
+    		{
+    				ksort($Batterien_AR["Leer"]);
+    				return $Batterien_AR["Leer"];
+    		}
+    		else
+    		{
+    				return false;
+    		}
     }
     
     private function ReadBatteryStates()
