@@ -1,4 +1,9 @@
 <?
+/**** 2do ***********************************************************************************************
+> Letzte Aktualisierung der "LowBatVAR" mit in Array und HTML-Ausgabe (ganz rechts) einbauen
+********************************************************************************************************/
+
+
 class BatterieMonitor extends IPSModule
 {
 

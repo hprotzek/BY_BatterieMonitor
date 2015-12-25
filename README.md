@@ -16,7 +16,7 @@ Dieses Modul liest alle Batterie-Variablen von Aktoren aus, gibt die Information
 Batterie-Aktoren in einer Tabelle dar und erzeugt eine 2. Tabelle mit allen Aktoren die eine leere Batterie haben.
 
 **Aktuell unterstützte Hersteller:**
-- FS20
+- FS20 HMS
 - HomeMatic
 - Z-Wave
 
