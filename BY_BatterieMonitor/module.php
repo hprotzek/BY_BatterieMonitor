@@ -101,7 +101,7 @@ class BatterieMonitor extends IPSModule
 								if ($VarID !== false)
 								{
 										$Batterien_AR["Alle"][] = IPS_GetName($InstanzID);
-										$LowBat = $this->GetValueBoolean($VarID);
+										$LowBat = GetValueBoolean($VarID);
 										if ($LowBat === true)
 										{
 									   		$Batterien_AR["Leer"][] = IPS_GetName($InstanzID);
@@ -113,7 +113,7 @@ class BatterieMonitor extends IPSModule
 								if ($VarID !== false)
 								{
 										$Batterien_AR["Alle"][] = IPS_GetName($InstanzID);
-										$LowBat = $this->GetValueBoolean($VarID);
+										$LowBat = GetValueBoolean($VarID);
 										if ($LowBat === true)
 										{
 									   		$Batterien_AR["Leer"][] = IPS_GetName($InstanzID);
