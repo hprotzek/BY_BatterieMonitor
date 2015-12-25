@@ -82,6 +82,19 @@ class BatterieMonitor extends IPSModule
     {
     		$Batterien_AR = $this->ReadBatteryStates();
     		@ksort($Batterien_AR["Alle"]);
+    		$BATcountAlle = @count($Batterien_AR["Alle"]);
+				$BATcountLeer = @count($Batterien_AR["Leer"]);
+				$this->SetValueInteger("BatteryAktorsAnzahlVAR", $BATcountAlle);
+				$this->SetValueInteger("BatteryLowAnzahlVAR", $BATcountLeer);
+				if ($BATcountLeer == 0)
+				{
+						$this->SetValueBoolean("BatteryLowExistVAR", false);
+				}
+				else
+				{
+						$this->SetValueBoolean("BatteryLowExistVAR", true);
+				}
+				
     		$this->HTMLausgabeGenerieren($Batterien_AR, "Alle");
     		if (isset($Batterien_AR["Alle"]))
     		{
@@ -97,6 +110,19 @@ class BatterieMonitor extends IPSModule
     {
     		$Batterien_AR = $this->ReadBatteryStates();
     		@ksort($Batterien_AR["Leer"]);
+    		$BATcountAlle = @count($Batterien_AR["Alle"]);
+				$BATcountLeer = @count($Batterien_AR["Leer"]);
+				$this->SetValueInteger("BatteryAktorsAnzahlVAR", $BATcountAlle);
+				$this->SetValueInteger("BatteryLowAnzahlVAR", $BATcountLeer);
+				if ($BATcountLeer == 0)
+				{
+						$this->SetValueBoolean("BatteryLowExistVAR", false);
+				}
+				else
+				{
+						$this->SetValueBoolean("BatteryLowExistVAR", true);
+				}
+				
     		$this->HTMLausgabeGenerieren($Batterien_AR, "Leer");
     		if (isset($Batterien_AR["Leer"]))
     		{
