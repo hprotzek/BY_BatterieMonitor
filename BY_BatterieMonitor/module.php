@@ -109,12 +109,29 @@ class BatterieMonitor extends IPSModule
     
     private function ReadBatteryStates()
     {
+				$InstanzIDsListAll[] = IPS_GetInstanceListByModuleID("{2FD7576A-D2AD-47EE-9779-A502F23CABB3}");  // FS20 HMS
     		$InstanzIDsListAll[] = IPS_GetInstanceListByModuleID("{EE4A81C6-5C90-4DB7-AD2F-F6BBD521412E}");  // HomeMatic
     		$InstanzIDsListAll[] = IPS_GetInstanceListByModuleID("{101352E1-88C7-4F16-998B-E20D50779AF6}");  // Z-Wave
     		foreach ($InstanzIDsListAll as $InstanzIDsList)
     		{
 						foreach ($InstanzIDsList as $InstanzID)
 						{
+						    //FS20 HMS
+						    $VarID = @IPS_GetObjectIDByIdent('LowBatteryVar', $InstanzID);
+								if ($VarID !== false)
+								{
+										$LowBat = GetValueBoolean($VarID);
+										if ($LowBat === true)
+										{
+									   		$Batterien_AR["Alle"][IPS_GetName($InstanzID)] = "LEER";
+									   		$Batterien_AR["Leer"][IPS_GetName($InstanzID)] = "LEER";
+										}
+										else
+										{
+									   		$Batterien_AR["Alle"][IPS_GetName($InstanzID)] = "OK";
+										}
+						  	}
+						    
 						    //HomeMatic
 						    $VarID = @IPS_GetObjectIDByIdent('LOWBAT', $InstanzID);
 								if ($VarID !== false)
