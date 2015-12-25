@@ -15,7 +15,7 @@
 Dieses Modul liest alle Batterie-Variablen von Aktoren aus, gibt die Informationen in einem Array zurück, stellt alle
 Batterie-Aktoren in einer Tabelle dar und erzeugt eine 2. Tabelle mit allen Aktoren die eine leere Batterie haben.
 
-*Aktuell unterstützte Hersteller:**
+**Aktuell unterstützte Hersteller:**
 - HomeMatic
 - Z-Wave
 
