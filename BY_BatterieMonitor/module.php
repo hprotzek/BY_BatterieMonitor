@@ -75,6 +75,7 @@ class BatterieMonitor extends IPSModule
 				}
 				$this->HTMLausgabeGenerieren($Batterien_AR, "Alle");
 				$this->HTMLausgabeGenerieren($Batterien_AR, "Leer");
+				return true;
     }
     
     public function Alle_Auslesen()
@@ -155,7 +156,6 @@ class BatterieMonitor extends IPSModule
 						  	$VarID = @IPS_GetObjectIDByIdent('BatteryLowVariable', $InstanzID);
 								if ($VarID !== false)
 								{
-										$Batterien_AR["Alle"][]["Name"] = IPS_GetName($InstanzID);
 										$LowBat = GetValueBoolean($VarID);
 										if ($LowBat === true)
 										{
