@@ -37,12 +37,12 @@ class BatterieMonitor extends IPSModule
         
         //Variablen anlegen und einstellen
         $this->RegisterVariableInteger("BatteryAktorsAnzahlVAR", "Batterie Aktoren - Anzahl");
-        $this->RegisterVariableInteger("BatteryLeerAnzahlVAR", "Batterie leer - Anzahl");
+        $this->RegisterVariableInteger("BatteryLowAnzahlVAR", "Batterie leer - Anzahl");
         $this->RegisterVariableBoolean("BatteryLowExistVAR", "Batterie leer - vorhanden", "BMON.NeinJa");
 		    $this->RegisterVariableString("TabelleBatteryAlleVAR", "Tabelle - Batterie Aktoren ALLE", "~HTMLBox");
 		    $this->RegisterVariableString("TabelleBatteryLowVAR", "Tabelle - Batterie Aktoren LEER", "~HTMLBox");
 		    IPS_SetIcon($this->GetIDForIdent("BatteryAktorsAnzahlVAR"), "Battery");
-		    IPS_SetIcon($this->GetIDForIdent("BatteryLeerAnzahlVAR"), "Battery");
+		    IPS_SetIcon($this->GetIDForIdent("BatteryLowAnzahlVAR"), "Battery");
 		    IPS_SetIcon($this->GetIDForIdent("BatteryLowExistVAR"), "Battery");
 		    IPS_SetIcon($this->GetIDForIdent("TabelleBatteryAlleVAR"), "Battery");
 		    IPS_SetIcon($this->GetIDForIdent("TabelleBatteryLowVAR"), "Battery");
@@ -143,22 +143,29 @@ class BatterieMonitor extends IPSModule
 				$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'">'.$TitelAR[0].'</th><th class="tb-title'.$this->InstanceID.'">'.$TitelAR[1].'</th></tr>';
 				
 				if ($AlleLeer == "Alle") {
-					for ($h=0; $h<count($BatterienAR["Alle"]); $h++) {
-						if (($h == 0) OR ($h == 1) OR ($h == 2)) {
-						   $HTML .= '<tr><th class="tb-content'.$this->InstanceID.'">'.$BatterienAR["Alle"][$h].'</th><th class="tb-content'.$this->InstanceID.'">'.$BatterienAR["Alle"][$h].'</th></tr>';
+						for ($h=0; $h<count($BatterienAR["Alle"]); $h++) {
+								if (($h == 0) OR ($h == 1) OR ($h == 2)) {
+								   $HTML .= '<tr><th class="tb-content'.$this->InstanceID.'">'.$BatterienAR["Alle"][$h].'</th><th class="tb-content'.$this->InstanceID.'">'.$BatterienAR["Alle"][$h].'</th></tr>';
+								}
 						}
-					}
-					$HTML .= '</table></html>';
-					$this->SetValueString("TabelleBatteryAlleVAR", $HTML);
+						$HTML .= '</table></html>';
+						$this->SetValueString("TabelleBatteryAlleVAR", $HTML);
 				}
 				elseif ($AlleLeer == "Leer") {
-					for ($h=0; $h<count($BatterienAR["Leer"]); $h++) {
-						if (($h == 0) OR ($h == 1) OR ($h == 2)) {
-						   $HTML .= '<tr><th class="tb-content'.$this->InstanceID.'">'.$BatterienAR["Leer"][$h].'</th><th class="tb-content'.$this->InstanceID.'">'.$BatterienAR["Leer"][$h].'</th></tr>';
+						if (isset($BatterienAR["Leer"]))
+						{
+								for ($h=0; $h<count($BatterienAR["Leer"]); $h++) {
+										if (($h == 0) OR ($h == 1) OR ($h == 2)) {
+										   $HTML .= '<tr><th class="tb-content'.$this->InstanceID.'">'.$BatterienAR["Leer"][$h].'</th><th class="tb-content'.$this->InstanceID.'">'.$BatterienAR["Leer"][$h].'</th></tr>';
+										}
+								}
 						}
-					}
-					$HTML .= '</table></html>';
-					$this->SetValueString("TabelleBatteryLowVAR", $HTML);
+						else
+						{
+								$HTML .= '<tr><th colspan="2">Keine Aktoren mit leeren Batterien vorhanden!</th></tr>';
+						}
+						$HTML .= '</table></html>';
+						$this->SetValueString("TabelleBatteryLowVAR", $HTML);
 				}
 		}
 
