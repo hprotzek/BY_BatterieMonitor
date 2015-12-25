@@ -12,7 +12,7 @@ class BatterieMonitor extends IPSModule
         $this->RegisterPropertyString("HintergrundFarbcode", "000000");
         $this->RegisterPropertyString("TextFarbcode", "FFFFFF");
         $this->RegisterPropertyString("TextSize", "12");
-        $this->RegisterPropertyInteger("Intervall", 1800);
+        $this->RegisterPropertyInteger("Intervall", 21600);
         $this->RegisterTimer("BMON_UpdateTimer", 0, 'BMON_Update($_IPS[\'TARGET\']);');
     }
 
