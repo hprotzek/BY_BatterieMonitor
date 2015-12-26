@@ -2,7 +2,7 @@
   "elements":
   [
 
-    { "type": "Label", "label": "####### BatterieMonitor v1.0 (26.12.2015 00.50Uhr) #######" },
+    { "type": "Label", "label": "####### BatterieMonitor v1.0 (26.12.2015 22.45Uhr) #######" },
     { "type": "Label", "label": "Aktuell unterstützte Hersteller: FS20 HMS, HomeMatic, Z-Wave" },
     { "type": "Label", "label": "Farbcode für Schriftfarbe und Hintergrundfarbe müssen im HEX-Format eingegeben werden:" },
     { "type": "ValidationTextBox", "name": "HintergrundFarbcode", "caption": "Hintergrundfarbe" },
@@ -12,6 +12,30 @@
     { "type": "NumberSpinner", "name": "TextSize", "caption": "Schriftgröße" },
     { "type": "Label", "label": "Intervall für das Auslesen der Batterie-Variablen:" },
     { "type": "IntervalBox", "name": "Intervall", "caption": "Sekunden" },
+    { "type": "Label", "label": "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" },
+    { "type": "Label", "label": "Text-Ausrichtung vom Inhalt der HTML-Tabellen:" },
+    { "name": "TextAusrichtungDD", "type": "Select", "caption": "Text-Ausrichtung",
+       "options": [
+                    { "label": "Links", "value": "links" },
+                    { "label": "Zentriert", "value": "mitte" },
+                    { "label": "Rechts", "value": "rechts" }
+       ]},
+    { "type": "Label", "label": "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" },
+    { "type": "Label", "label": "Text der als Benachrichtigung gesendet wird (es stehen verschiedene Variablen zur Verfügung). Wird nichts aktiviert, findet keine" },
+    { "type": "Label", "label": "Benachrichtigung statt! Gibt es gleichzeitig mehrere Aktoren mit leeren Batterien, wird der Text für jeden Aktor wiederholt." },
+    { "type": "Label", "label": "Verfügbare Variablen >> §AKTORNAME = Aktorname, §AKTORID = AktorID" },
+    { "type": "CheckBox", "name": "BatterieBenachrichtigungCBOX", "caption": "Batterie-Warnung senden (Benachrichtigung, wenn ein Aktor eine leere Batterie meldet)" },
+    { "type": "ValidationTextBox", "name": "BatterieBenachrichtigungTEXT", "caption": "Text" },
+    { "type": "Label", "label": "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" },
+    { "type": "Label", "label": "WebFront-Instanz, welche für den Versand der Push-Nachrichten verwendet wird (gültige IPS-Subscription notwendig):" },
+    { "type": "SelectInstance", "name": "WebFrontInstanceID", "caption": "WebFront-Instanz" },
+    { "type": "CheckBox", "name": "PushMsgAktiv", "caption": "Push-Benachrichtigung" },
+    { "type": "Label", "label": "SMTP-Instanz, welche für den Versand der EMail-Nachrichten verwendet wird:" },
+    { "type": "SelectInstance", "name": "SmtpInstanceID", "caption": "SMTP-Instanz" },
+    { "type": "CheckBox", "name": "EMailMsgAktiv", "caption": "EMail-Benachrichtigung" },
+    { "type": "Label", "label": "Skript für eigene Benachrichtigungs-Aktion (Sonos, Enigma2-Nachricht, LED blinken, SMS, ...):" },
+    { "type": "SelectScript", "name": "EigenesSkriptID", "caption": "Skript" },
+    { "type": "CheckBox", "name": "EigenesSkriptAktiv", "caption": "Eigenes Skript" }
 
   ],
   "actions":
