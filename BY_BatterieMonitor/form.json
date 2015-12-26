@@ -2,7 +2,7 @@
   "elements":
   [
 
-    { "type": "Label", "label": "####### BatterieMonitor v1.0 (26.12.2015 22.45Uhr) #######" },
+    { "type": "Label", "label": "####### BatterieMonitor v1.0 (26.12.2015 23.05Uhr) #######" },
     { "type": "Label", "label": "Aktuell unterstützte Hersteller: FS20 HMS, HomeMatic, Z-Wave" },
     { "type": "Label", "label": "Farbcode für Schriftfarbe und Hintergrundfarbe müssen im HEX-Format eingegeben werden:" },
     { "type": "ValidationTextBox", "name": "HintergrundFarbcode", "caption": "Hintergrundfarbe" },
