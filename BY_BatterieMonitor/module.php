@@ -341,13 +341,13 @@ class BatterieMonitor extends IPSModule
 						break;
 				}
 				$HTML_CSS_Style = '<style type="text/css">
-				.bt {border-collapse;border-spacing:4;}
+				.bt {border-collapse;border-spacing:10;}
 				.bt td'.$this->InstanceID.' {font-family:Arial, sans-serif;font-size:'.$TextSize.'px;color:#'.$TextFarbcode.';padding:1px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
 				.bt th'.$this->InstanceID.' {font-family:Arial, sans-serif;font-size:'.$TextSize.'px;color:#'.$TextFarbcode.';padding:1px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-				.bt .tb-title'.$this->InstanceID.'{font-size:'.$TextSizeTitle.'px;background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcode.';text-align:center}
-				.bt .tb-content'.$this->InstanceID.'{font-size:'.$TextSize.'px;'.$Textausrichtung.'background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcode.';text-align:center}
-				.bt .tb-contentOK'.$this->InstanceID.'{font-size:'.$TextSize.'px;'.$Textausrichtung.'background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcodeOK.';text-align:center}
-				.bt .tb-contentLOW'.$this->InstanceID.'{font-size:'.$TextSize.'px;'.$Textausrichtung.'background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcodeLEER.';text-align:center}
+				.bt .tb-title'.$this->InstanceID.'{font-size:'.$TextSizeTitle.'px;background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcode.'}
+				.bt .tb-content'.$this->InstanceID.'{font-size:'.$TextSize.'px;'.$Textausrichtung.'background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcode.'}
+				.bt .tb-contentOK'.$this->InstanceID.'{font-size:'.$TextSize.'px;'.$Textausrichtung.'background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcodeOK.'}
+				.bt .tb-contentLOW'.$this->InstanceID.'{font-size:'.$TextSize.'px;'.$Textausrichtung.'background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcodeLEER.'}
 				</style>';
 			
 				$TitelAR = array("Aktor","Hersteller","ID","Batterie","Letztes Variablen-Update");

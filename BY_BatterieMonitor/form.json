@@ -25,7 +25,7 @@
     { "type": "Label", "label": "Benachrichtigung statt! Gibt es gleichzeitig mehrere Aktoren mit leeren Batterien, wird der Text für jeden Aktor wiederholt." },
     { "type": "Label", "label": "Verfügbare Variablen >> §AKTORNAME = Aktorname, §AKTORID = AktorID" },
     { "type": "CheckBox", "name": "BatterieBenachrichtigungCBOX", "caption": "Batterie-Warnung senden (Benachrichtigung, wenn ein Aktor eine leere Batterie meldet)" },
-    { "type": "ValidationTextBox", "name": "BatterieBenachrichtigungTEXT", "caption": "Text" },
+    { "type": "ValidationTextBox", "name": "BatterieBenachrichtigungTEXT", "caption": "Benachr. Text" },
     { "type": "Label", "label": "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" },
     { "type": "Label", "label": "WebFront-Instanz, welche für den Versand der Push-Nachrichten verwendet wird (gültige IPS-Subscription notwendig):" },
     { "type": "SelectInstance", "name": "WebFrontInstanceID", "caption": "WebFront-Instanz" },
