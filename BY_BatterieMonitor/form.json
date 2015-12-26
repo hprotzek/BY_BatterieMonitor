@@ -2,7 +2,7 @@
   "elements":
   [
 
-    { "type": "Label", "label": "####### BatterieMonitor v1.0 (26.12.2015 23.05Uhr) #######" },
+    { "type": "Label", "label": "####### BatterieMonitor v1.1 (27.12.2015 00.22Uhr) #######" },
     { "type": "Label", "label": "Aktuell unterstützte Hersteller: FS20 HMS, HomeMatic, Z-Wave" },
     { "type": "Label", "label": "Farbcode für Schriftfarbe und Hintergrundfarbe müssen im HEX-Format eingegeben werden:" },
     { "type": "ValidationTextBox", "name": "HintergrundFarbcode", "caption": "Hintergrundfarbe" },
@@ -23,7 +23,7 @@
     { "type": "Label", "label": "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" },
     { "type": "Label", "label": "Text der als Benachrichtigung gesendet wird (es stehen verschiedene Variablen zur Verfügung). Wird nichts aktiviert, findet keine" },
     { "type": "Label", "label": "Benachrichtigung statt! Gibt es gleichzeitig mehrere Aktoren mit leeren Batterien, wird der Text für jeden Aktor wiederholt." },
-    { "type": "Label", "label": "Verfügbare Variablen >> §AKTORNAME = Aktorname, §AKTORID = AktorID" },
+    { "type": "Label", "label": "§AKTORNAME, §AKTORHERSTELLER, §AKTORID, §AKTORBATTERIE, §AKTORLETZTESUPDATE" },
     { "type": "CheckBox", "name": "BatterieBenachrichtigungCBOX", "caption": "Batterie-Warnung senden (Benachrichtigung, wenn ein Aktor eine leere Batterie meldet)" },
     { "type": "ValidationTextBox", "name": "BatterieBenachrichtigungTEXT", "caption": "Benachr. Text" },
     { "type": "Label", "label": "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" },
@@ -43,5 +43,13 @@
 
     { "type": "Button", "label": "Update", "onClick": "BMON_Update($id);" }
 
-  ]
+  ],
+  "status":
+    [
+        { "code": 102, "icon": "active", "caption": "BatterieMonitor ist aktiv" },
+        { "code": 201, "icon": "error", "caption": "FEHLER - Für Push Nachrichten muss eine WebFront-Instanz ausgewählt werden!" },
+        { "code": 202, "icon": "error", "caption": "FEHLER - Für EMail Nachrichten muss eine EMail-Instanz ausgewählt werden!" },
+        { "code": 203, "icon": "error", "caption": "FEHLER - Für eine eigene Aktion muss ein Skript ausgewählt werden!" },
+        { "code": 204, "icon": "error", "caption": "ACHTUNG - Damit eine Benachrichtigung erfolgen kann, muss eine Benachrichtigungs-Methode ausgewählt werden!" },
+    ]
 }

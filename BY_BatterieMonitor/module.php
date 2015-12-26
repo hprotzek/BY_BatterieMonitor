@@ -23,7 +23,7 @@ class BatterieMonitor extends IPSModule
         $this->RegisterPropertyBoolean("EMailMsgAktiv", false);
         $this->RegisterPropertyBoolean("EigenesSkriptAktiv", false);
         $this->RegisterPropertyBoolean("BatterieBenachrichtigungCBOX", false);
-        $this->RegisterPropertyString("BatterieBenachrichtigungTEXT", "Der Aktor -§AKTORNAME- mit der ID -§AKTORID- hat eine leere Batterie gemeldet!");
+        $this->RegisterPropertyString("BatterieBenachrichtigungTEXT", "Der Aktor -§AKTORNAME- vom Hersteller -§AKTORHERSTELLER- mit der ID -§AKTORID- hat eine leere Batterie!");
         $this->RegisterTimer("BMON_UpdateTimer", 0, 'BMON_Update($_IPS[\'TARGET\']);');
     }
 
@@ -46,6 +46,28 @@ class BatterieMonitor extends IPSModule
                                              Array(true, "Ja",  "Warning", 0xFF0000)
         ));
         
+        //Fehlerhafte Konfiguration melden
+      	if (($this->ReadPropertyBoolean("PushMsgAktiv") === true) AND ($this->ReadPropertyInteger("WebFrontInstanceID") == ""))
+        {
+        		$this->SetStatus(201);
+      	}
+      	elseif (($this->ReadPropertyBoolean("EMailMsgAktiv") === true) AND ($this->ReadPropertyInteger("SmtpInstanceID") == ""))
+        {
+        		$this->SetStatus(202);
+      	}
+      	elseif (($this->ReadPropertyBoolean("EigenesSkriptAktiv") === true) AND ($this->ReadPropertyInteger("EigenesSkriptID") == ""))
+        {
+        		$this->SetStatus(203);
+      	}
+      	elseif ((($this->ReadPropertyBoolean("PushMsgAktiv") === false) AND ($this->ReadPropertyBoolean("EMailMsgAktiv") === false) AND ($this->ReadPropertyBoolean("EigenesSkriptAktiv") === false)) AND (($this->ReadPropertyBoolean("BatterieBenachrichtigungCBOX") === true)))
+      	{
+      			$this->SetStatus(204);
+      	}
+      	else
+      	{
+      			$this->SetStatus(102);
+      	}
+        
         //Variablen anlegen und einstellen
         $this->RegisterVariableInteger("BatteryAktorsAnzahlVAR", "Batterie Aktoren - Gesamt");
         $this->RegisterVariableInteger("BatteryLowAnzahlVAR", "Batterie Aktoren - Leer");
@@ -60,7 +82,7 @@ class BatterieMonitor extends IPSModule
 		        
 		    //Timer erstellen
         $this->SetTimerInterval("BMON_UpdateTimer", $this->ReadPropertyInteger("Intervall"));
-        		
+        
      		//Update
      		$this->Update();
     }
@@ -79,6 +101,10 @@ class BatterieMonitor extends IPSModule
 				else
 				{
 						$this->SetValueBoolean("BatteryLowExistVAR", true);
+						if ($this->ReadPropertyBoolean("BatterieBenachrichtigungCBOX") == true)
+						{
+								$this->Benachrichtigung($Batterien_AR["Leer"]);
+						}
 				}
 				$this->HTMLausgabeGenerieren($Batterien_AR, "Alle");
 				$this->HTMLausgabeGenerieren($Batterien_AR, "Leer");
@@ -398,6 +424,64 @@ class BatterieMonitor extends IPSModule
 						$this->SetValueString("TabelleBatteryLowVAR", $HTML);
 				}
 		}
+		
+		private function Benachrichtigung($Batterien_AR)
+    {
+				$BenachrichtigungsText = $this->ReadPropertyString("BatterieBenachrichtigungTEXT");
+				
+				foreach ($Batterien_AR as $Aktor)
+				{
+						$AktorName = $Aktor["Name"];
+						$AktorHersteller = $Aktor["Hersteller"];
+						$AktorID = $Aktor["ID"];
+						$AktorBatterie = $Aktor["Batterie"];
+						$AktorLetztesUpdateSEK = $Aktor["LetztesUpdateVorSek"];
+						$AktorLetztesUpdateTS = date("d.m.Y H:i", $Aktor["LetztesUpdateTimestamp"]);
+						
+						//Code-Wörter austauschen gegen gewünschte Werte
+						$search = array("§AKTORNAME", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
+						$replace = array($AktorName, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
+						$Text = str_replace($search, $replace, $BenachrichtigungsText);
+						$Text = str_replace('Â', '', $Text);
+							
+						//PUSH-NACHRICHT
+						if ($this->ReadPropertyBoolean("PushMsgAktiv") == true)
+		        {
+		        		$WFinstanzID = $this->ReadPropertyInteger("WebFrontInstanceID");
+		        		if (($WFinstanzID != "") AND (@IPS_InstanceExists($WFinstanzID) === true))
+		        		{
+		        				if (strlen($Text) <= 256)
+		        				{
+		        						WFC_PushNotification($WFinstanzID, "BatterieMonitor", $Text, "", 0);
+		        				}
+		        				else
+		        				{
+		        					 IPS_LogMessage("BatterieMonitor", "FEHLER!!! - Die Textlänge einer Push-Nachricht darf maximal 256 Zeichen betragen!!!");
+		        				}
+		        		}
+		        }
+		        
+		        //EMAIL-NACHRICHT
+		        if ($this->ReadPropertyBoolean("EMailMsgAktiv") == true)
+		        {
+		        		$SMTPinstanzID = $this->ReadPropertyInteger("SmtpInstanceID");
+		        		if (($SMTPinstanzID != "") AND (@IPS_InstanceExists($SMTPinstanzID) === true))
+		        		{
+		        				SMTP_SendMail($SMTPinstanzID, "BatterieMonitor", $Text);
+		        		}		
+		        }
+		        
+		        //EIGENE-AKTION
+		        if ($this->ReadPropertyBoolean("EigenesSkriptAktiv") == true)
+		        {
+		        		$SkriptID = $this->ReadPropertyInteger("EigenesSkriptID");
+		        		if (($SkriptID != "") AND (@IPS_ScriptExists($SkriptID) === true))
+		        		{
+		        				IPS_RunScriptEx($SkriptID, array("BMON_Name" => $AktorName, "BMON_Hersteller" => $AktorHersteller, "BMON_ID" => $AktorID, "BMON_Batterie" => $AktorBatterie, "BMON_Text" => $Text, "BMON_LetztesUpdateTS" => $AktorLetztesUpdateTS, "BMON_LetztesUpdateSEK" => $AktorLetztesUpdateSEK));
+		        		}		
+		        }
+      	}
+    }
 		
 		private function Array_UniqueBySubitem_Sort($array, $key, $sort_flags = SORT_STRING)
 		{

@@ -20,13 +20,32 @@ Batterie-Aktoren in einer Tabelle dar und erzeugt eine 2. Tabelle mit allen Akto
 - HomeMatic
 - Z-Wave
 
+**Benachrichtigung**
+Je nachdem, ob eine Benachrichtigung per EMail/Push/Skript gewünscht ist, muss noch die entsprechende Instanz ausgewählt und auf aktiv
+gesetzt werden (Haken setzen). Eine Benachrichtigung erfolgt IMMER wenn eine leere Batterie erkannt wird! Wechselt ihr eine Batterie nicht,
+dann werdet ihr im Update-Intervall jeweils erneut benachrichtigt, bis die Batterien gewechselt wurden.
+- Pro Aktor mit leerer Batterie wird eine Benachrichtigung gesendet! Bei 3 leeren Aktoren sind das 3 Benachrichtigungen!
+
+Ihr könnt auch ein eigenes Skript festlegen, welches zur Benachrichtigung verwendet wird. Dieses Skript wird bei Erkennung eines Aktor mit
+leerer Batterie ausgeführt. Hier kann man dann Benachrichtigungen über Sonos, Enigma2-Nachricht, SMS, ... einrichten.
+Für eigene Aktionen stehen einem im ausgewählten Skript die folgenden Variablen zur Verfügung:
+```
+$_IPS["BMON_Name"] (Name des Aktor), $_IPS["BMON_Hersteller"] (Hersteller des Aktor),
+$_IPS["BMON_ID"] (ID/Serial des Aktor), $_IPS["BMON_Batterie"] (Batteriezustand OK/LEER),
+$_IPS["BMON_Text"] (Der Benachrichtigungstext inkl. "Übersetzung" der Variablen),
+$_IPS["BMON_LetztesUpdateTS"] (Datum und Uhrzeit, wann die Batterie-Variable zuletzt aktualisiert wurde),
+$_IPS["BMON_LetztesUpdateSEK"] (Sek. seit letzter Aktualisierung der Batterie-Variable)
+```
+
 **In der Modul-Instanz könnt ihr folgende Einstellungen vornehmen:**
 - Hintergrundfarbe (HEX Farbcode)
 - Textfarbe (HEX Farbcode)
 - Textfarbe OK (HEX Farbcode)
 - Textfarbe LEER (HEX Farbcode)
 - Textgröße
+- Textausrichtung
 - Aktualisierungsintervall (std. 21600 Sek = 6 Std)
+- Benachrichtigungseinstellungen
 
 
 ## 2. Systemanforderungen
@@ -61,3 +80,11 @@ wird "false" zurückgegeben.
 ## 5. Changelog
 Version 1.0:
   - Erster Release
+  
+Version 1.1:
+  - NEU # Textausrichtung in den HTML-Tabellen kann eingestellt werden (links,zentriert,rechts)
+  - NEU # Benachrichtigung, wenn Aktoren mit leeren Batterien erkannt wurden
+  - NEU # Weitere Daten vom Aktor (Hersteller, ID, Letztes Variablen-Update (Timestamp), Zeit in Sekunden seit letztem Variablen-Update)
+  - FIX # Doppelte Einträge werden aus dem Array herausgenommen
+
+  
