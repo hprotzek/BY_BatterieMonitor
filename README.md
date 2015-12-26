@@ -37,6 +37,15 @@ $_IPS["BMON_LetztesUpdateTS"] (Datum und Uhrzeit, wann die Batterie-Variable zul
 $_IPS["BMON_LetztesUpdateSEK"] (Sek. seit letzter Aktualisierung der Batterie-Variable)
 ```
 
+#### Beispiel-Skript für eigene Aktion
+```php
+<?
+$Enigma2BYinstanzID = 12345; // InstanzID des Enigma2-Modul eintragen
+IPS_LogMessage("BatterieMonitor", $_IPS["BMON_Text"]); // Schreibt den Text ins IPS-Log (zu sehen im Meldungen-Fenster in der IPS-Console)
+Enigma2BY_SendMsg($Enigma2BYinstanzID, $_IPS["BMON_Text"], 3, 10); // Zeigt 10 Sekunden lang eine Alarm-Nachricht über einen Enigma2-Receiver an
+?>
+```
+
 **In der Modul-Instanz könnt ihr folgende Einstellungen vornehmen:**
 - Hintergrundfarbe (HEX Farbcode)
 - Textfarbe (HEX Farbcode)
