@@ -203,6 +203,7 @@ class BatterieMonitor extends IPSModule
 										$DeviceID = IPS_GetProperty($InstanzID, "Address");
 										$InstanzHersteller = IPS_GetInstance($InstanzID);
 										$InstanzHersteller = $InstanzHersteller["ModuleInfo"]["ModuleName"];
+										$InstanzHersteller = str_replace(" Device", "", $InstanzHersteller);
 										$LowBat = GetValueBoolean($VarID);
 										if ($LowBat === true)
 										{
@@ -350,7 +351,7 @@ class BatterieMonitor extends IPSModule
 				.bt .tb-contentLOW'.$this->InstanceID.'{font-size:'.$TextSize.'px;padding:1mm;'.$Textausrichtung.'background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcodeLEER.'}
 				</style>';
 			
-				$TitelAR = array("Aktor","Hersteller","ID","Batterie","Letztes Variablen-Update");
+				$TitelAR = array("Aktor","Hersteller","ID","Batterie","Letztes Var-Update");
 				$HTML = '<html>'.$HTML_CSS_Style;
 				$HTML .= '<table class="bt">';
 				$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[0].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[1].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[2].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[3].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[4].'</b></th></tr>';
