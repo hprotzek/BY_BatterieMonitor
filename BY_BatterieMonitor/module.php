@@ -299,19 +299,22 @@ class BatterieMonitor extends IPSModule
 						$Batterien_AR["Alle"] = $this->Array_UniqueBySubitem_Sort($Batterien_AR["Alle"], "Hersteller_ID");
 						$Batterien_AR["Alle"] = array_merge($Batterien_AR["Alle"]);
 						
-						foreach ($Batterien_AR["Leer"] as $nr => $inhalt)
+						if (isset($Batterien_AR["Leer"]))
 						{
-							  $nameLEER[$nr] = strtolower($inhalt["Name"]);
-						    $batterieLEER[$nr] = strtolower($inhalt["Batterie"]);
-						    $herstellerLEER[$nr] = strtolower($inhalt["Hersteller"]);
-						    $idLEER[$nr] = strtolower($inhalt["ID"]);
-						    $herstelleridLEER[$nr] = strtolower($inhalt["Hersteller_ID"]);
-						    $lastupdatetsLEER[$nr] = strtolower($inhalt["LetztesVarUpdateTimestamp"]);
-						    $lastupdatevsLEER[$nr] = strtolower($inhalt["LetztesVarUpdateVorSek"]);
+								foreach ($Batterien_AR["Leer"] as $nr => $inhalt)
+								{
+									  $nameLEER[$nr] = strtolower($inhalt["Name"]);
+								    $batterieLEER[$nr] = strtolower($inhalt["Batterie"]);
+								    $herstellerLEER[$nr] = strtolower($inhalt["Hersteller"]);
+								    $idLEER[$nr] = strtolower($inhalt["ID"]);
+								    $herstelleridLEER[$nr] = strtolower($inhalt["Hersteller_ID"]);
+								    $lastupdatetsLEER[$nr] = strtolower($inhalt["LetztesVarUpdateTimestamp"]);
+								    $lastupdatevsLEER[$nr] = strtolower($inhalt["LetztesVarUpdateVorSek"]);
+								}
+								array_multisort($nameLEER, SORT_ASC, $Batterien_AR["Leer"]);
+								$Batterien_AR["Leer"] = $this->Array_UniqueBySubitem_Sort($Batterien_AR["Leer"], "Hersteller_ID");
+								$Batterien_AR["Leer"] = array_merge($Batterien_AR["Leer"]);
 						}
-						array_multisort($nameLEER, SORT_ASC, $Batterien_AR["Leer"]);
-						$Batterien_AR["Leer"] = $this->Array_UniqueBySubitem_Sort($Batterien_AR["Leer"], "Hersteller_ID");
-						$Batterien_AR["Leer"] = array_merge($Batterien_AR["Leer"]);
 						
 						return $Batterien_AR;
 				}
