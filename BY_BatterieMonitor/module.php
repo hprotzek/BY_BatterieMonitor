@@ -435,8 +435,8 @@ class BatterieMonitor extends IPSModule
 						$AktorHersteller = $Aktor["Hersteller"];
 						$AktorID = $Aktor["ID"];
 						$AktorBatterie = $Aktor["Batterie"];
-						$AktorLetztesUpdateSEK = $Aktor["LetztesUpdateVorSek"];
-						$AktorLetztesUpdateTS = date("d.m.Y H:i", $Aktor["LetztesUpdateTimestamp"]);
+						$AktorLetztesUpdateSEK = $Aktor["LetztesVarUpdateVorSek"];
+						$AktorLetztesUpdateTS = date("d.m.Y H:i", $Aktor["LetztesVarUpdateTimestamp"]);
 						
 						//Code-W顤ter austauschen gegen gew�nschte Werte
 						$search = array("你KTORNAME", "你KTORHERSTELLER", "你KTORID", "你KTORBATTERIE", "你KTORLETZTESUPDATE");
