@@ -15,7 +15,7 @@ class BatterieMonitor extends IPSModule
         $this->RegisterPropertyString("TextLOWFarbcode", "FF0000");
         $this->RegisterPropertyString("TextSize", "14");
         $this->RegisterPropertyString("TextAusrichtungDD", "mitte");
-        $this->RegisterPropertyString("ArraySortierWert", "Name");
+        $this->RegisterPropertyString("ArraySortierWert", "name");
         $this->RegisterPropertyString("NameParentTabelle", "Etage/Raum");
         $this->RegisterPropertyInteger("Intervall", 21600);
         $this->RegisterPropertyInteger("WebFrontInstanceID", 0);
@@ -652,7 +652,15 @@ class BatterieMonitor extends IPSModule
     
     public function BenachrichtigungsTest()
     {
-    		$TestAR[0] = array("Name" => "Test-Aktor", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
+    		if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+				{
+    				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle");
+    				$TestAR[0] = array("Name" => "Test-Aktor", $ParentNameTabelle => "1. OG", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
+    		}
+    		else
+    		{
+    				$TestAR[0] = array("Name" => "Test-Aktor", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
+    		}
     		$this->Benachrichtigung($TestAR);
    	}
 		
