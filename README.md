@@ -30,8 +30,9 @@ Ihr könnt auch ein eigenes Skript festlegen, welches zur Benachrichtigung verwe
 leerer Batterie ausgeführt. Hier kann man dann Benachrichtigungen über Sonos, Enigma2-Nachricht, SMS, ... einrichten.
 Für eigene Aktionen stehen einem im ausgewählten Skript die folgenden Variablen zur Verfügung:
 ```
-$_IPS["BMON_Name"] (Name des Aktor), $_IPS["BMON_Hersteller"] (Hersteller des Aktor),
-$_IPS["BMON_ID"] (ID/Serial des Aktor), $_IPS["BMON_Batterie"] (Batteriezustand OK/LEER),
+$_IPS["BMON_Name"] (Name des Aktor), $_IPS["BMON_ParentName"] (Name des Parent-Objekt vom Aktor),
+$_IPS["BMON_Hersteller"] (Hersteller des Aktor), $_IPS["BMON_ID"] (ID/Serial des Aktor),
+$_IPS["BMON_Batterie"] (Batteriezustand OK/LEER),
 $_IPS["BMON_Text"] (Der Benachrichtigungstext inkl. "Übersetzung" der Variablen),
 $_IPS["BMON_LetztesUpdateTS"] (Datum und Uhrzeit, wann die Batterie-Variable zuletzt aktualisiert wurde),
 $_IPS["BMON_LetztesUpdateSEK"] (Sek. seit letzter Aktualisierung der Batterie-Variable)
@@ -52,7 +53,8 @@ Enigma2BY_SendMsg($Enigma2BYinstanzID, $_IPS["BMON_Text"], 3, 10); // Zeigt 10 S
 - Textfarbe OK (HEX Farbcode)
 - Textfarbe LEER (HEX Farbcode)
 - Textgröße
-- Textausrichtung
+- Textausrichtung (links,zentriert,rechts)
+- Name des übergeordneten Objektes (Parent) + Anzeige in HTML-Tabelle
 - Aktualisierungsintervall (std. 21600 Sek = 6 Std)
 - Benachrichtigungseinstellungen
 

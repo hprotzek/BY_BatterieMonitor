@@ -15,10 +15,12 @@ class BatterieMonitor extends IPSModule
         $this->RegisterPropertyString("TextLOWFarbcode", "FF0000");
         $this->RegisterPropertyString("TextSize", "14");
         $this->RegisterPropertyString("TextAusrichtungDD", "mitte");
+        $this->RegisterPropertyString("NameParentTabelle", "Etage");
         $this->RegisterPropertyInteger("Intervall", 21600);
         $this->RegisterPropertyInteger("WebFrontInstanceID", 0);
         $this->RegisterPropertyInteger("SmtpInstanceID", 0);
         $this->RegisterPropertyInteger("EigenesSkriptID", 0);
+        $this->RegisterPropertyBoolean("NamenParentObjekt", false);
         $this->RegisterPropertyBoolean("PushMsgAktiv", false);
         $this->RegisterPropertyBoolean("EMailMsgAktiv", false);
         $this->RegisterPropertyBoolean("EigenesSkriptAktiv", false);
@@ -167,6 +169,7 @@ class BatterieMonitor extends IPSModule
     
     private function ReadBatteryStates()
     {
+				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle");
 				$InstanzIDsListAll[] = IPS_GetInstanceListByModuleID("{2FD7576A-D2AD-47EE-9779-A502F23CABB3}");  // FS20 HMS
     		$InstanzIDsListAll[] = IPS_GetInstanceListByModuleID("{EE4A81C6-5C90-4DB7-AD2F-F6BBD521412E}");  // HomeMatic
     		$InstanzIDsListAll[] = IPS_GetInstanceListByModuleID("{101352E1-88C7-4F16-998B-E20D50779AF6}");  // Z-Wave
@@ -190,6 +193,10 @@ class BatterieMonitor extends IPSModule
 										if ($LowBat === true)
 										{
 									   		$Batterien_AR["Alle"][$a]["Name"] = IPS_GetName($InstanzID);
+									   		if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+												{
+									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
+									   		}
 									   		$Batterien_AR["Alle"][$a]["Batterie"] = "LEER";
 									   		$Batterien_AR["Alle"][$a]["Hersteller"] = $InstanzHersteller;
 									   		$Batterien_AR["Alle"][$a]["ID"] = $DeviceID;
@@ -197,6 +204,10 @@ class BatterieMonitor extends IPSModule
 									   		$Batterien_AR["Alle"][$a]["LetztesVarUpdateTimestamp"] = $VarLastUpdated;
 									   		$Batterien_AR["Alle"][$a]["LetztesVarUpdateVorSek"] = $VarLastUpdatedDiffSek;
 									   		$Batterien_AR["Leer"][$l]["Name"] = IPS_GetName($InstanzID);
+									   		if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+												{
+									   				$Batterien_AR["Leer"][$a][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
+									   		}
 									   		$Batterien_AR["Leer"][$l]["Batterie"] = "LEER";
 									   		$Batterien_AR["Leer"][$l]["Hersteller"] = $InstanzHersteller;
 									   		$Batterien_AR["Leer"][$l]["ID"] = $DeviceID;
@@ -209,6 +220,10 @@ class BatterieMonitor extends IPSModule
 										else
 										{
 									   		$Batterien_AR["Alle"][$a]["Name"] = IPS_GetName($InstanzID);
+									   		if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+												{
+									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
+									   		}
 									   		$Batterien_AR["Alle"][$a]["Batterie"] = "OK";
 									   		$Batterien_AR["Alle"][$a]["Hersteller"] = $InstanzHersteller;
 									   		$Batterien_AR["Alle"][$a]["ID"] = $DeviceID;
@@ -234,6 +249,10 @@ class BatterieMonitor extends IPSModule
 										if ($LowBat === true)
 										{
 									   		$Batterien_AR["Alle"][$a]["Name"] = IPS_GetName($InstanzID);
+									   		if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+												{
+									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
+									   		}
 									   		$Batterien_AR["Alle"][$a]["Batterie"] = "LEER";
 									   		$Batterien_AR["Alle"][$a]["Hersteller"] = $InstanzHersteller;
 									   		$Batterien_AR["Alle"][$a]["ID"] = $DeviceID;
@@ -241,6 +260,10 @@ class BatterieMonitor extends IPSModule
 									   		$Batterien_AR["Alle"][$a]["LetztesVarUpdateTimestamp"] = $VarLastUpdated;
 									   		$Batterien_AR["Alle"][$a]["LetztesVarUpdateVorSek"] = $VarLastUpdatedDiffSek;
 									   		$Batterien_AR["Leer"][$l]["Name"] = IPS_GetName($InstanzID);
+									   		if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+												{
+									   				$Batterien_AR["Leer"][$a][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
+									   		}
 									   		$Batterien_AR["Leer"][$l]["Batterie"] = "LEER";
 									   		$Batterien_AR["Leer"][$l]["Hersteller"] = $InstanzHersteller;
 									   		$Batterien_AR["Leer"][$l]["ID"] = $DeviceID;
@@ -253,6 +276,10 @@ class BatterieMonitor extends IPSModule
 										else
 										{
 									   		$Batterien_AR["Alle"][$a]["Name"] = IPS_GetName($InstanzID);
+									   		if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+												{
+									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
+									   		}
 									   		$Batterien_AR["Alle"][$a]["Batterie"] = "OK";
 									   		$Batterien_AR["Alle"][$a]["Hersteller"] = $InstanzHersteller;
 									   		$Batterien_AR["Alle"][$a]["ID"] = $DeviceID;
@@ -278,6 +305,10 @@ class BatterieMonitor extends IPSModule
 										if ($LowBat === true)
 										{
 									   		$Batterien_AR["Alle"][$a]["Name"] = IPS_GetName($InstanzID);
+									   		if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+												{
+									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
+									   		}
 									   		$Batterien_AR["Alle"][$a]["Batterie"] = "LEER";
 									   		$Batterien_AR["Alle"][$a]["Hersteller"] = $InstanzHersteller;
 									   		$Batterien_AR["Alle"][$a]["ID"] = $DeviceID;
@@ -285,6 +316,10 @@ class BatterieMonitor extends IPSModule
 									   		$Batterien_AR["Alle"][$a]["LetztesVarUpdateTimestamp"] = $VarLastUpdated;
 									   		$Batterien_AR["Alle"][$a]["LetztesVarUpdateVorSek"] = $VarLastUpdatedDiffSek;
 									   		$Batterien_AR["Leer"][$l]["Name"] = IPS_GetName($InstanzID);
+									   		if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+												{
+									   				$Batterien_AR["Leer"][$a][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
+									   		}
 									   		$Batterien_AR["Leer"][$l]["Batterie"] = "LEER";
 									   		$Batterien_AR["Leer"][$l]["Hersteller"] = $InstanzHersteller;
 									   		$Batterien_AR["Leer"][$l]["ID"] = $DeviceID;
@@ -297,6 +332,10 @@ class BatterieMonitor extends IPSModule
 										else
 										{
 									   		$Batterien_AR["Alle"][$a]["Name"] = IPS_GetName($InstanzID);
+									   		if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+												{
+									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
+									   		}
 									   		$Batterien_AR["Alle"][$a]["Batterie"] = "OK";
 									   		$Batterien_AR["Alle"][$a]["Hersteller"] = $InstanzHersteller;
 									   		$Batterien_AR["Alle"][$a]["ID"] = $DeviceID;
@@ -315,6 +354,10 @@ class BatterieMonitor extends IPSModule
 						foreach ($Batterien_AR["Alle"] as $nr => $inhalt)
 						{
 							  $nameALLE[$nr] = strtolower($inhalt["Name"]);
+							  if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+								{
+							  		$nameParentALLE[$nr] = strtolower($inhalt[$ParentNameTabelle]);
+							  }
 						    $batterieALLE[$nr] = strtolower($inhalt["Batterie"]);
 						    $herstellerALLE[$nr] = strtolower($inhalt["Hersteller"]);
 						    $idALLE[$nr] = strtolower($inhalt["ID"]);
@@ -331,6 +374,10 @@ class BatterieMonitor extends IPSModule
 								foreach ($Batterien_AR["Leer"] as $nr => $inhalt)
 								{
 									  $nameLEER[$nr] = strtolower($inhalt["Name"]);
+									  if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+										{
+									  		$nameParentLEER[$nr] = strtolower($inhalt[$ParentNameTabelle]);
+									  }
 								    $batterieLEER[$nr] = strtolower($inhalt["Batterie"]);
 								    $herstellerLEER[$nr] = strtolower($inhalt["Hersteller"]);
 								    $idLEER[$nr] = strtolower($inhalt["ID"]);
@@ -353,6 +400,7 @@ class BatterieMonitor extends IPSModule
 
 		private function HTMLausgabeGenerieren($BatterienAR, $AlleLeer)
 		{
+				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle");
 				$HintergrundFarbcode = $this->ReadPropertyString("HintergrundFarbcode");
 				$TextFarbcode = $this->ReadPropertyString("TextFarbcode");
 				$TextFarbcodeOK = $this->ReadPropertyString("TextOKFarbcode");
@@ -381,7 +429,14 @@ class BatterieMonitor extends IPSModule
 				.bt .tb-contentLOW'.$this->InstanceID.'{font-size:'.$TextSize.'px;padding:1mm;'.$Textausrichtung.'background-color:#'.$HintergrundFarbcode.';color:#'.$TextFarbcodeLEER.'}
 				</style>';
 			
-				$TitelAR = array("Aktor","Hersteller","ID","Batterie","Letztes Var-Update");
+				if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+				{
+						$TitelAR = array("Aktor",$ParentNameTabelle,"Hersteller","ID","Batterie","Letztes Var-Update");
+				}
+				else
+				{
+						$TitelAR = array("Aktor","Hersteller","ID","Batterie","Letztes Var-Update");
+				}
 				$HTML = '<html>'.$HTML_CSS_Style;
 				$HTML .= '<table class="bt">';
 				$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[0].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[1].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[2].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[3].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[4].'</b></th></tr>';
@@ -393,7 +448,14 @@ class BatterieMonitor extends IPSModule
 								{
 						    		if ($Aktor["Batterie"] == "OK")
 										{
-												$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'">'.$Aktor["Name"].'</th><th class="tb-content'.$this->InstanceID.'">'.$Aktor["Hersteller"].'</th><th class="tb-content'.$this->InstanceID.'">'.$Aktor["ID"].'</th><th class="tb-contentOK'.$this->InstanceID.'">'.$Aktor["Batterie"].'</th><th class="tb-content'.$this->InstanceID.'">'.date("d.m.Y H:i", $Aktor["LetztesVarUpdateTimestamp"]).'Uhr</th></tr>';
+												if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+												{
+														$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'">'.$Aktor["Name"].'</th><th class="tb-content'.$this->InstanceID.'">'.$Aktor[$ParentNameTabelle].'</th><th class="tb-content'.$this->InstanceID.'">'.$Aktor["Hersteller"].'</th><th class="tb-content'.$this->InstanceID.'">'.$Aktor["ID"].'</th><th class="tb-contentOK'.$this->InstanceID.'">'.$Aktor["Batterie"].'</th><th class="tb-content'.$this->InstanceID.'">'.date("d.m.Y H:i", $Aktor["LetztesVarUpdateTimestamp"]).'Uhr</th></tr>';
+												}
+												else
+												{
+														$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'">'.$Aktor["Name"].'</th><th class="tb-content'.$this->InstanceID.'">'.$Aktor["Hersteller"].'</th><th class="tb-content'.$this->InstanceID.'">'.$Aktor["ID"].'</th><th class="tb-contentOK'.$this->InstanceID.'">'.$Aktor["Batterie"].'</th><th class="tb-content'.$this->InstanceID.'">'.date("d.m.Y H:i", $Aktor["LetztesVarUpdateTimestamp"]).'Uhr</th></tr>';
+												}
 										}
 										elseif ($Aktor["Batterie"] == "LEER")
 										{
@@ -413,7 +475,14 @@ class BatterieMonitor extends IPSModule
 						{
 								foreach ($BatterienAR["Leer"] as $Aktor)
 								{
-										$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'">'.$Aktor["Name"].'</th><th class="tb-content'.$this->InstanceID.'">'.$Aktor["Hersteller"].'</th><th class="tb-content'.$this->InstanceID.'">'.$Aktor["ID"].'</th><th class="tb-contentLOW'.$this->InstanceID.'">'.$Aktor["Batterie"].'</th><th class="tb-content'.$this->InstanceID.'">'.date("d.m.Y H:i", $Aktor["LetztesVarUpdateTimestamp"]).'Uhr</th></tr>';
+										if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+										{
+												$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'">'.$Aktor["Name"].'</th><th class="tb-content'.$this->InstanceID.'">'.$Aktor[$ParentNameTabelle].'</th><th class="tb-content'.$this->InstanceID.'">'.$Aktor["ID"].'</th><th class="tb-contentLOW'.$this->InstanceID.'">'.$Aktor["Batterie"].'</th><th class="tb-content'.$this->InstanceID.'">'.date("d.m.Y H:i", $Aktor["LetztesVarUpdateTimestamp"]).'Uhr</th></tr>';
+										}
+										else
+										{
+												$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'">'.$Aktor["Name"].'</th><th class="tb-content'.$this->InstanceID.'">'.$Aktor["Hersteller"].'</th><th class="tb-content'.$this->InstanceID.'">'.$Aktor["Hersteller"].'</th><th class="tb-content'.$this->InstanceID.'">'.$Aktor["ID"].'</th><th class="tb-contentLOW'.$this->InstanceID.'">'.$Aktor["Batterie"].'</th><th class="tb-content'.$this->InstanceID.'">'.date("d.m.Y H:i", $Aktor["LetztesVarUpdateTimestamp"]).'Uhr</th></tr>';
+										}
 								}
 						}
 						else
@@ -427,11 +496,13 @@ class BatterieMonitor extends IPSModule
 		
 		private function Benachrichtigung($Batterien_AR)
     {
+				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle");
 				$BenachrichtigungsText = $this->ReadPropertyString("BatterieBenachrichtigungTEXT");
-				
+
 				foreach ($Batterien_AR as $Aktor)
 				{
 						$AktorName = $Aktor["Name"];
+						$AktorParentName = $Aktor[$ParentNameTabelle];
 						$AktorHersteller = $Aktor["Hersteller"];
 						$AktorID = $Aktor["ID"];
 						$AktorBatterie = $Aktor["Batterie"];
@@ -439,8 +510,8 @@ class BatterieMonitor extends IPSModule
 						$AktorLetztesUpdateTS = date("d.m.Y H:i", $Aktor["LetztesVarUpdateTimestamp"]);
 						
 						//Code-Wörter austauschen gegen gewünschte Werte
-						$search = array("§AKTORNAME", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
-						$replace = array($AktorName, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
+						$search = array("§AKTORNAME", "§AKTORPARENT", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
+						$replace = array($AktorName, $AktorParentName, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
 						$Text = str_replace($search, $replace, $BenachrichtigungsText);
 						$Text = str_replace('Â', '', $Text);
 							
@@ -477,7 +548,7 @@ class BatterieMonitor extends IPSModule
 		        		$SkriptID = $this->ReadPropertyInteger("EigenesSkriptID");
 		        		if (($SkriptID != "") AND (@IPS_ScriptExists($SkriptID) === true))
 		        		{
-		        				IPS_RunScriptEx($SkriptID, array("BMON_Name" => $AktorName, "BMON_Hersteller" => $AktorHersteller, "BMON_ID" => $AktorID, "BMON_Batterie" => $AktorBatterie, "BMON_Text" => $Text, "BMON_LetztesUpdateTS" => $AktorLetztesUpdateTS, "BMON_LetztesUpdateSEK" => $AktorLetztesUpdateSEK));
+		        				IPS_RunScriptEx($SkriptID, array("BMON_Name" => $AktorName, "BMON_ParentName" => $AktorParentName, "BMON_Hersteller" => $AktorHersteller, "BMON_ID" => $AktorID, "BMON_Batterie" => $AktorBatterie, "BMON_Text" => $Text, "BMON_LetztesUpdateTS" => $AktorLetztesUpdateTS, "BMON_LetztesUpdateSEK" => $AktorLetztesUpdateSEK));
 		        		}		
 		        }
       	}

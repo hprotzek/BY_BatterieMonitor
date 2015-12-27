@@ -2,7 +2,7 @@
   "elements":
   [
 
-    { "type": "Label", "label": "####### BatterieMonitor v1.1 (27.12.2015 00.40Uhr) #######" },
+    { "type": "Label", "label": "####### BatterieMonitor v1.1 (27.12.2015 15.20Uhr) #######" },
     { "type": "Label", "label": "Aktuell unterstützte Hersteller: FS20 HMS, HomeMatic, Z-Wave" },
     { "type": "Label", "label": "Farbcode für Schriftfarbe und Hintergrundfarbe müssen im HEX-Format eingegeben werden:" },
     { "type": "ValidationTextBox", "name": "HintergrundFarbcode", "caption": "Hintergrundfarbe" },
@@ -12,6 +12,9 @@
     { "type": "NumberSpinner", "name": "TextSize", "caption": "Schriftgröße" },
     { "type": "Label", "label": "Intervall für das Auslesen der Batterie-Variablen:" },
     { "type": "IntervalBox", "name": "Intervall", "caption": "Sekunden" },
+    { "type": "Label", "label": "Parent-Name aktivieren, um den Namen des Objektes (Kategorie/DummyModul) über der Aktor-Instanz in der Tabelle zu verwenden:" },
+    { "type": "CheckBox", "name": "NamenParentObjekt", "caption": "Parent-Name anzeigen" },
+    { "type": "ValidationTextBox", "name": "NameParentTabelle", "caption": "Parent-Name in Tabelle" },
     { "type": "Label", "label": "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" },
     { "type": "Label", "label": "Text-Ausrichtung vom Inhalt der HTML-Tabellen:" },
     { "name": "TextAusrichtungDD", "type": "Select", "caption": "Text-Ausrichtung",
@@ -23,7 +26,7 @@
     { "type": "Label", "label": "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" },
     { "type": "Label", "label": "Text der als Benachrichtigung gesendet wird (es stehen verschiedene Variablen zur Verfügung). Wird nichts aktiviert, findet keine" },
     { "type": "Label", "label": "Benachrichtigung statt! Gibt es gleichzeitig mehrere Aktoren mit leeren Batterien, wird der Text für jeden Aktor wiederholt." },
-    { "type": "Label", "label": "§AKTORNAME, §AKTORHERSTELLER, §AKTORID, §AKTORBATTERIE, §AKTORLETZTESUPDATE" },
+    { "type": "Label", "label": "§AKTORNAME, §AKTORPARENT, §AKTORHERSTELLER, §AKTORID, §AKTORBATTERIE, §AKTORLETZTESUPDATE" },
     { "type": "CheckBox", "name": "BatterieBenachrichtigungCBOX", "caption": "Batterie-Warnung senden (Benachrichtigung, wenn ein Aktor eine leere Batterie meldet)" },
     { "type": "ValidationTextBox", "name": "BatterieBenachrichtigungTEXT", "caption": "Benachr. Text" },
     { "type": "Label", "label": "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" },
