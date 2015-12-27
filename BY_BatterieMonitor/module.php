@@ -206,7 +206,7 @@ class BatterieMonitor extends IPSModule
 									   		$Batterien_AR["Leer"][$l]["Name"] = IPS_GetName($InstanzID);
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
 												{
-									   				$Batterien_AR["Leer"][$a][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
+									   				$Batterien_AR["Leer"][$l][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
 									   		}
 									   		$Batterien_AR["Leer"][$l]["Batterie"] = "LEER";
 									   		$Batterien_AR["Leer"][$l]["Hersteller"] = $InstanzHersteller;
@@ -262,7 +262,7 @@ class BatterieMonitor extends IPSModule
 									   		$Batterien_AR["Leer"][$l]["Name"] = IPS_GetName($InstanzID);
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
 												{
-									   				$Batterien_AR["Leer"][$a][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
+									   				$Batterien_AR["Leer"][$l][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
 									   		}
 									   		$Batterien_AR["Leer"][$l]["Batterie"] = "LEER";
 									   		$Batterien_AR["Leer"][$l]["Hersteller"] = $InstanzHersteller;
@@ -318,7 +318,7 @@ class BatterieMonitor extends IPSModule
 									   		$Batterien_AR["Leer"][$l]["Name"] = IPS_GetName($InstanzID);
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
 												{
-									   				$Batterien_AR["Leer"][$a][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
+									   				$Batterien_AR["Leer"][$l][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
 									   		}
 									   		$Batterien_AR["Leer"][$l]["Batterie"] = "LEER";
 									   		$Batterien_AR["Leer"][$l]["Hersteller"] = $InstanzHersteller;
