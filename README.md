@@ -96,6 +96,8 @@ Version 1.1:
   - NEU # Textausrichtung in den HTML-Tabellen kann eingestellt werden (links,zentriert,rechts)
   - NEU # Benachrichtigung, wenn Aktoren mit leeren Batterien erkannt wurden (Push-Nachricht, EMail, Skript)
   - NEU # Weitere Daten vom Aktor (Hersteller, ID, Letztes Variablen-Update Timestamp, Zeit in Sekunden seit letztem Variablen-Update)
-  - FIX # Doppelte Aktoren-Einträge werden aus Array/HTML-Tabelle entfernt
-
+  - FIX # Doppelte Aktoren-Einträge werden aus Array/HTML-Tabelle entfernt (Der 1. gefundene Eintrag wird behalten)
   
+Version 1.2
+  - NEU # Sortierung von Array und HTML-Tabellen einstellbar (nach Name, Parent-Name [wenn aktiv], Hersteller, ID, ...)
+  - NEU # Test-Benachrichtigung (mit fiktiven Daten, aber eigenem Text) kann aus der Instanz gesendet werden

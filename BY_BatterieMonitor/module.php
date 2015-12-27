@@ -15,6 +15,7 @@ class BatterieMonitor extends IPSModule
         $this->RegisterPropertyString("TextLOWFarbcode", "FF0000");
         $this->RegisterPropertyString("TextSize", "14");
         $this->RegisterPropertyString("TextAusrichtungDD", "mitte");
+        $this->RegisterPropertyString("ArraySortierWert", "Name");
         $this->RegisterPropertyString("NameParentTabelle", "Etage/Raum");
         $this->RegisterPropertyInteger("Intervall", 21600);
         $this->RegisterPropertyInteger("WebFrontInstanceID", 0);
@@ -350,7 +351,7 @@ class BatterieMonitor extends IPSModule
 
 				if (isset($Batterien_AR))
 				{
-						//Array sortieren (nach Name), doppelte Einträge entfernen und neu durchnummerieren
+						//Array sortieren, doppelte Einträge entfernen und neu durchnummerieren
 						foreach ($Batterien_AR["Alle"] as $nr => $inhalt)
 						{
 							  $nameALLE[$nr] = strtolower($inhalt["Name"]);
@@ -365,7 +366,40 @@ class BatterieMonitor extends IPSModule
 						    $lastupdatetsALLE[$nr] = strtolower($inhalt["LetztesVarUpdateTimestamp"]);
 						    $lastupdatevsALLE[$nr] = strtolower($inhalt["LetztesVarUpdateVorSek"]);
 						}
-						array_multisort($nameALLE, SORT_ASC, $Batterien_AR["Alle"]);
+						
+						//Nach was soll das Array sortiert werden?
+						if ($this->ReadPropertyString("ArraySortierWert") == "name")
+						{
+								array_multisort($nameALLE, SORT_ASC, $Batterien_AR["Alle"]);
+						}
+						elseif ($this->ReadPropertyString("ArraySortierWert") == "parentname")
+						{
+								if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+								{
+										array_multisort($nameParentALLE, SORT_ASC, $Batterien_AR["Alle"]);
+								}
+								else
+								{
+										array_multisort($nameALLE, SORT_ASC, $Batterien_AR["Alle"]);
+								}
+						}
+						elseif ($this->ReadPropertyString("ArraySortierWert") == "batterie")
+						{
+								array_multisort($batterieALLE, SORT_ASC, $Batterien_AR["Alle"]);
+						}
+						elseif ($this->ReadPropertyString("ArraySortierWert") == "hersteller")
+						{
+								array_multisort($herstellerALLE, SORT_ASC, $Batterien_AR["Alle"]);
+						}
+						elseif ($this->ReadPropertyString("ArraySortierWert") == "id")
+						{
+								array_multisort($idALLE, SORT_ASC, $Batterien_AR["Alle"]);
+						}
+						elseif ($this->ReadPropertyString("ArraySortierWert") == "letztesupdts")
+						{
+								array_multisort($lastupdatetsALLE, SORT_ASC, $Batterien_AR["Alle"]);
+						}
+						
 						$Batterien_AR["Alle"] = $this->Array_UniqueBySubitem_Sort($Batterien_AR["Alle"], "Hersteller_ID");
 						$Batterien_AR["Alle"] = array_merge($Batterien_AR["Alle"]);
 						
@@ -385,11 +419,41 @@ class BatterieMonitor extends IPSModule
 								    $lastupdatetsLEER[$nr] = strtolower($inhalt["LetztesVarUpdateTimestamp"]);
 								    $lastupdatevsLEER[$nr] = strtolower($inhalt["LetztesVarUpdateVorSek"]);
 								}
-								array_multisort($nameLEER, SORT_ASC, $Batterien_AR["Leer"]);
+								//Nach was soll das Array sortiert werden?
+								if ($this->ReadPropertyString("ArraySortierWert") == "name")
+								{
+										array_multisort($nameALLE, SORT_ASC, $Batterien_AR["Leer"]);
+								}
+								elseif ($this->ReadPropertyString("ArraySortierWert") == "parentname")
+								{
+										if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+										{
+												array_multisort($nameParentALLE, SORT_ASC, $Batterien_AR["Leer"]);
+										}
+										else
+										{
+												array_multisort($nameALLE, SORT_ASC, $Batterien_AR["Leer"]);
+										}
+								}
+								elseif ($this->ReadPropertyString("ArraySortierWert") == "batterie")
+								{
+										array_multisort($batterieALLE, SORT_ASC, $Batterien_AR["Leer"]);
+								}
+								elseif ($this->ReadPropertyString("ArraySortierWert") == "hersteller")
+								{
+										array_multisort($herstellerALLE, SORT_ASC, $Batterien_AR["Leer"]);
+								}
+								elseif ($this->ReadPropertyString("ArraySortierWert") == "id")
+								{
+										array_multisort($idALLE, SORT_ASC, $Batterien_AR["Leer"]);
+								}
+								elseif ($this->ReadPropertyString("ArraySortierWert") == "letztesupdts")
+								{
+										array_multisort($lastupdatetsALLE, SORT_ASC, $Batterien_AR["Leer"]);
+								}
 								$Batterien_AR["Leer"] = $this->Array_UniqueBySubitem_Sort($Batterien_AR["Leer"], "Hersteller_ID");
 								$Batterien_AR["Leer"] = array_merge($Batterien_AR["Leer"]);
 						}
-						
 						return $Batterien_AR;
 				}
 				else
