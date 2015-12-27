@@ -15,7 +15,7 @@ class BatterieMonitor extends IPSModule
         $this->RegisterPropertyString("TextLOWFarbcode", "FF0000");
         $this->RegisterPropertyString("TextSize", "14");
         $this->RegisterPropertyString("TextAusrichtungDD", "mitte");
-        $this->RegisterPropertyString("NameParentTabelle", "Etage");
+        $this->RegisterPropertyString("NameParentTabelle", "Etage/Raum");
         $this->RegisterPropertyInteger("Intervall", 21600);
         $this->RegisterPropertyInteger("WebFrontInstanceID", 0);
         $this->RegisterPropertyInteger("SmtpInstanceID", 0);
