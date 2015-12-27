@@ -586,7 +586,7 @@ class BatterieMonitor extends IPSModule
       	}
     }
     
-    public function BenachrichtigungsTest();
+    public function BenachrichtigungsTest()
     {
     		$TestAR[0] = array("Name" => "Test-Aktor", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesUpdateTimestamp" => "1451169488", "LetztesUpdateVorSek" => "28800");
     		$this->Benachrichtigung($TestAR);
