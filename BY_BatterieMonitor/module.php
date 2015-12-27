@@ -439,7 +439,14 @@ class BatterieMonitor extends IPSModule
 				}
 				$HTML = '<html>'.$HTML_CSS_Style;
 				$HTML .= '<table class="bt">';
-				$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[0].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[1].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[2].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[3].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[4].'</b></th></tr>';
+				if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+				{
+						$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[0].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[1].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[2].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[3].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[4].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[5].'</b></th></tr>';
+				}
+				else
+				{
+						$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[0].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[1].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[2].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[3].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[4].'</b></th></tr>';
+				}
 				
 				if ($AlleLeer == "Alle") {
 						if (isset($BatterienAR["Alle"]))
@@ -502,7 +509,10 @@ class BatterieMonitor extends IPSModule
 				foreach ($Batterien_AR as $Aktor)
 				{
 						$AktorName = $Aktor["Name"];
-						$AktorParentName = $Aktor[$ParentNameTabelle];
+						if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+						{
+								$AktorParentName = $Aktor[$ParentNameTabelle];
+						}
 						$AktorHersteller = $Aktor["Hersteller"];
 						$AktorID = $Aktor["ID"];
 						$AktorBatterie = $Aktor["Batterie"];
@@ -510,8 +520,16 @@ class BatterieMonitor extends IPSModule
 						$AktorLetztesUpdateTS = date("d.m.Y H:i", $Aktor["LetztesVarUpdateTimestamp"]);
 						
 						//Code-Wörter austauschen gegen gewünschte Werte
-						$search = array("§AKTORNAME", "§AKTORPARENT", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
-						$replace = array($AktorName, $AktorParentName, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
+						if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+						{
+								$search = array("§AKTORNAME", "§AKTORPARENT", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
+								$replace = array($AktorName, $AktorParentName, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
+						}
+						else
+						{
+								$search = array("§AKTORNAME", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
+								$replace = array($AktorName, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
+						}
 						$Text = str_replace($search, $replace, $BenachrichtigungsText);
 						$Text = str_replace('Â', '', $Text);
 							
@@ -548,7 +566,14 @@ class BatterieMonitor extends IPSModule
 		        		$SkriptID = $this->ReadPropertyInteger("EigenesSkriptID");
 		        		if (($SkriptID != "") AND (@IPS_ScriptExists($SkriptID) === true))
 		        		{
-		        				IPS_RunScriptEx($SkriptID, array("BMON_Name" => $AktorName, "BMON_ParentName" => $AktorParentName, "BMON_Hersteller" => $AktorHersteller, "BMON_ID" => $AktorID, "BMON_Batterie" => $AktorBatterie, "BMON_Text" => $Text, "BMON_LetztesUpdateTS" => $AktorLetztesUpdateTS, "BMON_LetztesUpdateSEK" => $AktorLetztesUpdateSEK));
+		        				if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+										{
+		        						IPS_RunScriptEx($SkriptID, array("BMON_Name" => $AktorName, "BMON_ParentName" => $AktorParentName, "BMON_Hersteller" => $AktorHersteller, "BMON_ID" => $AktorID, "BMON_Batterie" => $AktorBatterie, "BMON_Text" => $Text, "BMON_LetztesUpdateTS" => $AktorLetztesUpdateTS, "BMON_LetztesUpdateSEK" => $AktorLetztesUpdateSEK));
+		        				}
+		        				else
+		        				{
+		        						IPS_RunScriptEx($SkriptID, array("BMON_Name" => $AktorName, "BMON_Hersteller" => $AktorHersteller, "BMON_ID" => $AktorID, "BMON_Batterie" => $AktorBatterie, "BMON_Text" => $Text, "BMON_LetztesUpdateTS" => $AktorLetztesUpdateTS, "BMON_LetztesUpdateSEK" => $AktorLetztesUpdateSEK));
+		        				}
 		        		}		
 		        }
       	}
