@@ -241,7 +241,7 @@ class BatterieMonitor extends IPSModule
 										$Var = IPS_GetVariable($VarID);
 										$VarLastUpdated = $Var["VariableUpdated"];
 										$VarLastUpdatedDiffSek = time() - $VarLastUpdated;
-										$DeviceID = IPS_GetProperty($InstanzID, "Address");
+										$DeviceID = substr(IPS_GetProperty($InstanzID, "Address"), 0, -2);
 										$InstanzHersteller = IPS_GetInstance($InstanzID);
 										$InstanzHersteller = $InstanzHersteller["ModuleInfo"]["ModuleName"];
 										$InstanzHersteller = str_replace(" Device", "", $InstanzHersteller);
