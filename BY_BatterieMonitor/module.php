@@ -422,34 +422,34 @@ class BatterieMonitor extends IPSModule
 								//Nach was soll das Array sortiert werden?
 								if ($this->ReadPropertyString("ArraySortierWert") == "name")
 								{
-										array_multisort($nameALLE, SORT_ASC, $Batterien_AR["Leer"]);
+										array_multisort($nameLEER, SORT_ASC, $Batterien_AR["Leer"]);
 								}
 								elseif ($this->ReadPropertyString("ArraySortierWert") == "parentname")
 								{
 										if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
 										{
-												array_multisort($nameParentALLE, SORT_ASC, $Batterien_AR["Leer"]);
+												array_multisort($nameParentLEER, SORT_ASC, $Batterien_AR["Leer"]);
 										}
 										else
 										{
-												array_multisort($nameALLE, SORT_ASC, $Batterien_AR["Leer"]);
+												array_multisort($nameLEER, SORT_ASC, $Batterien_AR["Leer"]);
 										}
 								}
 								elseif ($this->ReadPropertyString("ArraySortierWert") == "batterie")
 								{
-										array_multisort($batterieALLE, SORT_ASC, $Batterien_AR["Leer"]);
+										array_multisort($batterieLEER, SORT_ASC, $Batterien_AR["Leer"]);
 								}
 								elseif ($this->ReadPropertyString("ArraySortierWert") == "hersteller")
 								{
-										array_multisort($herstellerALLE, SORT_ASC, $Batterien_AR["Leer"]);
+										array_multisort($herstellerLEER, SORT_ASC, $Batterien_AR["Leer"]);
 								}
 								elseif ($this->ReadPropertyString("ArraySortierWert") == "id")
 								{
-										array_multisort($idALLE, SORT_ASC, $Batterien_AR["Leer"]);
+										array_multisort($idLEER, SORT_ASC, $Batterien_AR["Leer"]);
 								}
 								elseif ($this->ReadPropertyString("ArraySortierWert") == "letztesupdts")
 								{
-										array_multisort($lastupdatetsALLE, SORT_ASC, $Batterien_AR["Leer"]);
+										array_multisort($lastupdatetsLEER, SORT_ASC, $Batterien_AR["Leer"]);
 								}
 								$Batterien_AR["Leer"] = $this->Array_UniqueBySubitem_Sort($Batterien_AR["Leer"], "Hersteller_ID");
 								$Batterien_AR["Leer"] = array_merge($Batterien_AR["Leer"]);
