@@ -189,7 +189,7 @@ class BatterieMonitor extends IPSModule
 						    			$InstanzHersteller = "FHT";
 						    		break;
 						    		case "HMS":
-						    			$InstanzHersteller = "HomeMatic";
+						    			$InstanzHersteller = "HMS";
 						    		break;
 						    		case "HomeMatic Device":
 						    			$InstanzHersteller = "HomeMatic";
