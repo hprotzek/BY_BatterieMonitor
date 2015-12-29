@@ -186,16 +186,16 @@ class BatterieMonitor extends IPSModule
 						    switch ($InstanzHersteller)
 						    {
 						    		case "FHT":
-						    			$InstanzHersteller = "FHT"
+						    			$InstanzHersteller = "FHT";
 						    		break;
 						    		case "HMS":
-						    			$InstanzHersteller = "HomeMatic"
+						    			$InstanzHersteller = "HomeMatic";
 						    		break;
 						    		case "HomeMatic Device":
-						    			$InstanzHersteller = "HomeMatic"
+						    			$InstanzHersteller = "HomeMatic";
 						    		break;
 						    		case "Z-Wave Module":
-						    			$InstanzHersteller = "Z-Wave"
+						    			$InstanzHersteller = "Z-Wave";
 						    		break;
 						    }
 						    
