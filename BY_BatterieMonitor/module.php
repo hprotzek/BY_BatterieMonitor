@@ -181,16 +181,32 @@ class BatterieMonitor extends IPSModule
     		{
 						foreach ($InstanzIDsList as $InstanzID)
 						{
+						    $InstanzHersteller = IPS_GetInstance($InstanzID);
+								$InstanzHersteller = $InstanzHersteller["ModuleInfo"]["ModuleName"];
+						    switch ($InstanzHersteller)
+						    {
+						    		case "FHT":
+						    			$InstanzHersteller = "FHT"
+						    		break;
+						    		case "HMS":
+						    			$InstanzHersteller = "HomeMatic"
+						    		break;
+						    		case "HomeMatic Device":
+						    			$InstanzHersteller = "HomeMatic"
+						    		break;
+						    		case "Z-Wave Module":
+						    			$InstanzHersteller = "Z-Wave"
+						    		break;
+						    }
+						    
 						    //FHT
-						    $VarID = @IPS_GetObjectIDByIdent('Battery', $InstanzID);
-								if ($VarID !== false)
+						    $VarID = @IPS_GetObjectIDByIdent('LowBatteryVar', $InstanzID);
+								if (($VarID !== false) AND ($InstanzHersteller == "FHT"))
 								{
 										$Var = IPS_GetVariable($VarID);
 										$VarLastUpdated = $Var["VariableUpdated"];
 										$VarLastUpdatedDiffSek = time() - $VarLastUpdated;
 										$DeviceID = IPS_GetProperty($InstanzID, "Address");
-										$InstanzHersteller = IPS_GetInstance($InstanzID);
-										$InstanzHersteller = $InstanzHersteller["ModuleInfo"]["ModuleName"];
 										$LowBat = GetValueBoolean($VarID);
 										if ($LowBat === true)
 										{
@@ -238,14 +254,12 @@ class BatterieMonitor extends IPSModule
 						    
 						    //FS20 HMS
 						    $VarID = @IPS_GetObjectIDByIdent('LowBatteryVar', $InstanzID);
-								if ($VarID !== false)
+								if (($VarID !== false) AND ($InstanzHersteller == "HMS"))
 								{
 										$Var = IPS_GetVariable($VarID);
 										$VarLastUpdated = $Var["VariableUpdated"];
 										$VarLastUpdatedDiffSek = time() - $VarLastUpdated;
 										$DeviceID = IPS_GetProperty($InstanzID, "DeviceID");
-										$InstanzHersteller = IPS_GetInstance($InstanzID);
-										$InstanzHersteller = $InstanzHersteller["ModuleInfo"]["ModuleName"];
 										$LowBat = GetValueBoolean($VarID);
 										if ($LowBat === true)
 										{
@@ -293,15 +307,12 @@ class BatterieMonitor extends IPSModule
 						    
 						    //HomeMatic
 						    $VarID = @IPS_GetObjectIDByIdent('LOWBAT', $InstanzID);
-								if ($VarID !== false)
+								if (($VarID !== false) AND ($InstanzHersteller == "HomeMatic"))
 								{
 										$Var = IPS_GetVariable($VarID);
 										$VarLastUpdated = $Var["VariableUpdated"];
 										$VarLastUpdatedDiffSek = time() - $VarLastUpdated;
 										$DeviceID = substr(IPS_GetProperty($InstanzID, "Address"), 0, -2);
-										$InstanzHersteller = IPS_GetInstance($InstanzID);
-										$InstanzHersteller = $InstanzHersteller["ModuleInfo"]["ModuleName"];
-										$InstanzHersteller = str_replace(" Device", "", $InstanzHersteller);
 										$LowBat = GetValueBoolean($VarID);
 										if ($LowBat === true)
 										{
@@ -349,15 +360,12 @@ class BatterieMonitor extends IPSModule
 						  	
 						  	//Z-Wave
 						  	$VarID = @IPS_GetObjectIDByIdent('BatteryLowVariable', $InstanzID);
-								if ($VarID !== false)
+								if (($VarID !== false) AND ($InstanzHersteller == "Z-Wave"))
 								{
 										$Var = IPS_GetVariable($VarID);
 										$VarLastUpdated = $Var["VariableUpdated"];
 										$VarLastUpdatedDiffSek = time() - $VarLastUpdated;
 										$DeviceID = IPS_GetProperty($InstanzID, "NodeID");
-										$InstanzHersteller = IPS_GetInstance($InstanzID);
-										$InstanzHersteller = $InstanzHersteller["ModuleInfo"]["ModuleName"];
-										$InstanzHersteller = str_replace(" Module", "", $InstanzHersteller);
 										$LowBat = GetValueBoolean($VarID);
 										if ($LowBat === true)
 										{
