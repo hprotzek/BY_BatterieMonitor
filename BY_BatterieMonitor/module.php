@@ -171,6 +171,7 @@ class BatterieMonitor extends IPSModule
     private function ReadBatteryStates()
     {
 				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle");
+				$InstanzIDsListAll[] = IPS_GetInstanceListByModuleID("{A89F8DFA-A439-4BF1-B7CB-43D047208DDD}");  // FHT
 				$InstanzIDsListAll[] = IPS_GetInstanceListByModuleID("{2FD7576A-D2AD-47EE-9779-A502F23CABB3}");  // FS20 HMS
     		$InstanzIDsListAll[] = IPS_GetInstanceListByModuleID("{EE4A81C6-5C90-4DB7-AD2F-F6BBD521412E}");  // HomeMatic
     		$InstanzIDsListAll[] = IPS_GetInstanceListByModuleID("{101352E1-88C7-4F16-998B-E20D50779AF6}");  // Z-Wave
@@ -180,6 +181,61 @@ class BatterieMonitor extends IPSModule
     		{
 						foreach ($InstanzIDsList as $InstanzID)
 						{
+						    //FHT
+						    $VarID = @IPS_GetObjectIDByIdent('Battery', $InstanzID);
+								if ($VarID !== false)
+								{
+										$Var = IPS_GetVariable($VarID);
+										$VarLastUpdated = $Var["VariableUpdated"];
+										$VarLastUpdatedDiffSek = time() - $VarLastUpdated;
+										$DeviceID = IPS_GetProperty($InstanzID, "DeviceID");
+										$InstanzHersteller = IPS_GetInstance($InstanzID);
+										$InstanzHersteller = $InstanzHersteller["ModuleInfo"]["ModuleName"];
+										$LowBat = GetValueBoolean($VarID);
+										if ($LowBat === true)
+										{
+									   		$Batterien_AR["Alle"][$a]["Name"] = IPS_GetName($InstanzID);
+									   		if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+												{
+									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
+									   		}
+									   		$Batterien_AR["Alle"][$a]["Batterie"] = "LEER";
+									   		$Batterien_AR["Alle"][$a]["Hersteller"] = $InstanzHersteller;
+									   		$Batterien_AR["Alle"][$a]["ID"] = $DeviceID;
+									   		$Batterien_AR["Alle"][$a]["Hersteller_ID"] = $InstanzHersteller." - ".$DeviceID;
+									   		$Batterien_AR["Alle"][$a]["LetztesVarUpdateTimestamp"] = $VarLastUpdated;
+									   		$Batterien_AR["Alle"][$a]["LetztesVarUpdateVorSek"] = $VarLastUpdatedDiffSek;
+									   		$Batterien_AR["Leer"][$l]["Name"] = IPS_GetName($InstanzID);
+									   		if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+												{
+									   				$Batterien_AR["Leer"][$l][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
+									   		}
+									   		$Batterien_AR["Leer"][$l]["Batterie"] = "LEER";
+									   		$Batterien_AR["Leer"][$l]["Hersteller"] = $InstanzHersteller;
+									   		$Batterien_AR["Leer"][$l]["ID"] = $DeviceID;
+									   		$Batterien_AR["Leer"][$l]["Hersteller_ID"] = $InstanzHersteller." - ".$DeviceID;
+									   		$Batterien_AR["Leer"][$l]["LetztesVarUpdateTimestamp"] = $VarLastUpdated;
+									   		$Batterien_AR["Leer"][$l]["LetztesVarUpdateVorSek"] = $VarLastUpdatedDiffSek;
+									   		$a++;
+									   		$l++;
+										}
+										else
+										{
+									   		$Batterien_AR["Alle"][$a]["Name"] = IPS_GetName($InstanzID);
+									   		if ($this->ReadPropertyBoolean("NamenParentObjekt") == true)
+												{
+									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = IPS_GetName(IPS_GetParent($InstanzID));
+									   		}
+									   		$Batterien_AR["Alle"][$a]["Batterie"] = "OK";
+									   		$Batterien_AR["Alle"][$a]["Hersteller"] = $InstanzHersteller;
+									   		$Batterien_AR["Alle"][$a]["ID"] = $DeviceID;
+									   		$Batterien_AR["Alle"][$a]["Hersteller_ID"] = $InstanzHersteller." - ".$DeviceID;
+									   		$Batterien_AR["Alle"][$a]["LetztesVarUpdateTimestamp"] = $VarLastUpdated;
+									   		$Batterien_AR["Alle"][$a]["LetztesVarUpdateVorSek"] = $VarLastUpdatedDiffSek;
+									   		$a++;
+										}
+						  	}
+						    
 						    //FS20 HMS
 						    $VarID = @IPS_GetObjectIDByIdent('LowBatteryVar', $InstanzID);
 								if ($VarID !== false)
