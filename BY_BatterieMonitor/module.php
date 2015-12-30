@@ -1098,6 +1098,27 @@ class BatterieMonitor extends IPSModule
 						case 3:
 						$ParentID = IPS_GetParent(IPS_GetParent(IPS_GetParent($InstanzID)));
 						break;
+						case 4:
+						$ParentID = IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent($InstanzID))));
+						break;
+						case 5:
+						$ParentID = IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent($InstanzID)))));
+						break;
+						case 6:
+						$ParentID = IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent($InstanzID))))));
+						break;
+						case 7:
+						$ParentID = IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent($InstanzID)))))));
+						break;
+						case 8:
+						$ParentID = IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent($InstanzID))))))));
+						break;
+						case 9:
+						$ParentID = IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent(IPS_GetParent($InstanzID)))))))));
+						break;
+						default:
+						$ParentID = IPS_GetParent($InstanzID);
+						break;
 				}
 				return $ParentID;
 		}
