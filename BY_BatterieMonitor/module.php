@@ -939,7 +939,9 @@ class BatterieMonitor extends IPSModule
 		
 		private function Benachrichtigung($Batterien_AR)
     {
-				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle");
+				$ParentName1Tabelle = $this->ReadPropertyString("NameParentTabelle1TB");
+				$ParentName2Tabelle = $this->ReadPropertyString("NameParentTabelle2TB");
+				$ParentName3Tabelle = $this->ReadPropertyString("NameParentTabelle3TB");
 				$BenachrichtigungsText = $this->ReadPropertyString("BatterieBenachrichtigungTEXT");
 
 				foreach ($Batterien_AR as $Aktor)
