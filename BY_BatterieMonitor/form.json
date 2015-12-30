@@ -2,7 +2,7 @@
   "elements":
   [
 
-    { "type": "Label", "label": "####### BatterieMonitor v1.2 (29.12.2015 14.40Uhr) #######" },
+    { "type": "Label", "label": "####### BatterieMonitor v1.2 (30.12.2015 23.45Uhr) #######" },
     { "type": "Label", "label": "Aktuell unterstützte Hersteller: FHT, FS20 HMS, HomeMatic, Z-Wave" },
     { "type": "Label", "label": "Farbcode für Schriftfarbe und Hintergrundfarbe müssen im HEX-Format eingegeben werden:" },
     { "type": "ValidationTextBox", "name": "HintergrundFarbcode", "caption": "Hintergrundfarbe" },
@@ -13,8 +13,16 @@
     { "type": "Label", "label": "Intervall für das Auslesen der Batterie-Variablen:" },
     { "type": "IntervalBox", "name": "Intervall", "caption": "Sekunden" },
     { "type": "Label", "label": "Parent-Name aktivieren, um den Namen des Objektes (Kategorie/DummyModul) über der Aktor-Instanz in der Tabelle zu verwenden (z.B. für Etage):" },
-    { "type": "CheckBox", "name": "NamenParentObjekt", "caption": "Parent-Name anzeigen" },
-    { "type": "ValidationTextBox", "name": "NameParentTabelle", "caption": "Parent-Überschrift" },
+    { "type": "CheckBox", "name": "NamenParentObjekt1CB", "caption": "Parent-Name1 anzeigen" },
+    { "type": "CheckBox", "name": "NamenParentObjekt2CB", "caption": "Parent-Name2 anzeigen" },
+    { "type": "CheckBox", "name": "NamenParentObjekt3CB", "caption": "Parent-Name3 anzeigen" },
+    { "type": "Label", "label": "Parent-Nummer legt fest, welcher Parent verwendet wird (1=direkter Parent, 2=Parent vom Parent, 3=Parent vom Parent vom Parent):" },
+    { "type": "NumberSpinner", "name": "ParentNr1NS", "caption": "Parent-Nummer1" },
+    { "type": "NumberSpinner", "name": "ParentNr2NS", "caption": "Parent-Nummer2" },
+    { "type": "NumberSpinner", "name": "ParentNr3NS", "caption": "Parent-Nummer3" },
+    { "type": "ValidationTextBox", "name": "NameParentTabelle1TB", "caption": "Parent-Überschrift1" },
+    { "type": "ValidationTextBox", "name": "NameParentTabelle2TB", "caption": "Parent-Überschrift2" },
+    { "type": "ValidationTextBox", "name": "NameParentTabelle3TB", "caption": "Parent-Überschrift3" },
     { "type": "Label", "label": "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" },
     { "type": "Label", "label": "Text-Ausrichtung vom Inhalt der HTML-Tabellen:" },
     { "name": "TextAusrichtungDD", "type": "Select", "caption": "Text-Ausrichtung",
@@ -27,7 +35,9 @@
     { "name": "ArraySortierWert", "type": "Select", "caption": "Zeilen-Sortierung",
        "options": [
                     { "label": "Name", "value": "name" },
-                    { "label": "Parent-Name", "value": "parentname" },
+                    { "label": "Parent-Name1", "value": "parentname1" },
+                    { "label": "Parent-Name2", "value": "parentname2" },
+                    { "label": "Parent-Name3", "value": "parentname3" },
                     { "label": "Batterie", "value": "batterie" },
                     { "label": "Hersteller", "value": "hersteller" },
                     { "label": "ID", "value": "id" },
