@@ -221,7 +221,7 @@ class BatterieMonitor extends IPSModule
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr1NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle1TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   				
 									   		}
@@ -229,13 +229,13 @@ class BatterieMonitor extends IPSModule
 												{
 
 									   				$ParentID = $this->ParentIDermitteln("ParentNr2NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle2TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr3NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle3TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		$Batterien_AR["Alle"][$a]["Batterie"] = "LEER";
@@ -248,7 +248,7 @@ class BatterieMonitor extends IPSModule
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr1NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle1TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
 									   				$Batterien_AR["Leer"][$l][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   				
 									   		}
@@ -256,13 +256,13 @@ class BatterieMonitor extends IPSModule
 												{
 
 									   				$ParentID = $this->ParentIDermitteln("ParentNr2NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle2TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
 									   				$Batterien_AR["Leer"][$l][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr3NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle3TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
 									   				$Batterien_AR["Leer"][$l][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		$Batterien_AR["Leer"][$l]["Batterie"] = "LEER";
@@ -280,7 +280,7 @@ class BatterieMonitor extends IPSModule
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr1NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle1TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   				
 									   		}
@@ -288,13 +288,13 @@ class BatterieMonitor extends IPSModule
 												{
 
 									   				$ParentID = $this->ParentIDermitteln("ParentNr2NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle2TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr3NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle3TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		$Batterien_AR["Alle"][$a]["Batterie"] = "OK";
@@ -323,7 +323,7 @@ class BatterieMonitor extends IPSModule
 												if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr1NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle1TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   				
 									   		}
@@ -331,13 +331,13 @@ class BatterieMonitor extends IPSModule
 												{
 
 									   				$ParentID = $this->ParentIDermitteln("ParentNr2NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle2TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr3NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle3TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		$Batterien_AR["Alle"][$a]["Batterie"] = "LEER";
@@ -350,7 +350,7 @@ class BatterieMonitor extends IPSModule
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr1NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle1TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
 									   				$Batterien_AR["Leer"][$l][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   				
 									   		}
@@ -358,13 +358,13 @@ class BatterieMonitor extends IPSModule
 												{
 
 									   				$ParentID = $this->ParentIDermitteln("ParentNr2NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle2TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
 									   				$Batterien_AR["Leer"][$l][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr3NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle3TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
 									   				$Batterien_AR["Leer"][$l][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		$Batterien_AR["Leer"][$l]["Batterie"] = "LEER";
@@ -382,7 +382,7 @@ class BatterieMonitor extends IPSModule
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr1NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle1TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   				
 									   		}
@@ -390,13 +390,13 @@ class BatterieMonitor extends IPSModule
 												{
 
 									   				$ParentID = $this->ParentIDermitteln("ParentNr2NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle2TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr3NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle3TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		$Batterien_AR["Alle"][$a]["Batterie"] = "OK";
@@ -424,7 +424,7 @@ class BatterieMonitor extends IPSModule
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr1NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle1TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   				
 									   		}
@@ -432,13 +432,13 @@ class BatterieMonitor extends IPSModule
 												{
 
 									   				$ParentID = $this->ParentIDermitteln("ParentNr2NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle2TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr3NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle3TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		$Batterien_AR["Alle"][$a]["Batterie"] = "LEER";
@@ -451,7 +451,7 @@ class BatterieMonitor extends IPSModule
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr1NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle1TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
 									   				$Batterien_AR["Leer"][$l][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   				
 									   		}
@@ -459,13 +459,13 @@ class BatterieMonitor extends IPSModule
 												{
 
 									   				$ParentID = $this->ParentIDermitteln("ParentNr2NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle2TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
 									   				$Batterien_AR["Leer"][$l][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr3NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle3TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
 									   				$Batterien_AR["Leer"][$l][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		$Batterien_AR["Leer"][$l]["Batterie"] = "LEER";
@@ -483,7 +483,7 @@ class BatterieMonitor extends IPSModule
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr1NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle1TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   				
 									   		}
@@ -491,13 +491,13 @@ class BatterieMonitor extends IPSModule
 												{
 
 									   				$ParentID = $this->ParentIDermitteln("ParentNr2NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle2TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr3NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle3TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		$Batterien_AR["Alle"][$a]["Batterie"] = "OK";
@@ -525,7 +525,7 @@ class BatterieMonitor extends IPSModule
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr1NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle1TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   				
 									   		}
@@ -533,13 +533,13 @@ class BatterieMonitor extends IPSModule
 												{
 
 									   				$ParentID = $this->ParentIDermitteln("ParentNr2NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle2TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr3NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle3TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		$Batterien_AR["Alle"][$a]["Batterie"] = "LEER";
@@ -552,7 +552,7 @@ class BatterieMonitor extends IPSModule
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr1NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle1TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
 									   				$Batterien_AR["Leer"][$l][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   				
 									   		}
@@ -560,13 +560,13 @@ class BatterieMonitor extends IPSModule
 												{
 
 									   				$ParentID = $this->ParentIDermitteln("ParentNr2NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle2TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
 									   				$Batterien_AR["Leer"][$l][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr3NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle3TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
 									   				$Batterien_AR["Leer"][$l][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		$Batterien_AR["Leer"][$l]["Batterie"] = "LEER";
@@ -584,7 +584,7 @@ class BatterieMonitor extends IPSModule
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr1NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle1TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   				
 									   		}
@@ -592,13 +592,13 @@ class BatterieMonitor extends IPSModule
 												{
 
 									   				$ParentID = $this->ParentIDermitteln("ParentNr2NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle2TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 												{
 									   				$ParentID = $this->ParentIDermitteln("ParentNr3NS", $InstanzID);
-									   				$ParentNameTabelle = $this->ReadPropertyString("NameParentTabelle3TB");
+									   				$ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabell3TB"));
 									   				$Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
 									   		}
 									   		$Batterien_AR["Alle"][$a]["Batterie"] = "OK";
@@ -621,15 +621,15 @@ class BatterieMonitor extends IPSModule
 							  $nameALLE[$nr] = strtolower($inhalt["Name"]);
 							  if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 								{
-							  		$nameParent1ALLE[$nr] = strtolower($inhalt[$this->ReadPropertyString("NameParentTabelle1TB")]);
+							  		$nameParent1ALLE[$nr] = strtolower($this->Umlaute_Ersetzen($inhalt[$this->ReadPropertyString("NameParentTabelle1TB")]));
 							  }
 							  if ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true)
 								{
-							  		$nameParent2ALLE[$nr] = strtolower($inhalt[$this->ReadPropertyString("NameParentTabelle2TB")]);
+							  		$nameParent2ALLE[$nr] = strtolower($this->Umlaute_Ersetzen($inhalt[$this->ReadPropertyString("NameParentTabelle2TB")]));
 							  }
 							  if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 								{
-							  		$nameParent3ALLE[$nr] = strtolower($inhalt[$this->ReadPropertyString("NameParentTabelle3TB")]);
+							  		$nameParent3ALLE[$nr] = strtolower($this->Umlaute_Ersetzen($inhalt[$this->ReadPropertyString("NameParentTabelle3TB")]));
 							  }
 						    $batterieALLE[$nr] = strtolower($inhalt["Batterie"]);
 						    $herstellerALLE[$nr] = strtolower($inhalt["Hersteller"]);
@@ -704,15 +704,15 @@ class BatterieMonitor extends IPSModule
 									  $nameLEER[$nr] = strtolower($inhalt["Name"]);
 									  if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 										{
-									  		$nameParent1LEER[$nr] = strtolower($inhalt[$this->ReadPropertyString("NameParentTabelle1TB")]);
+									  		$nameParent1LEER[$nr] = strtolower($this->Umlaute_Ersetzen($inhalt[$this->ReadPropertyString("NameParentTabelle1TB")]));
 									  }
 									  if ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true)
 										{
-									  		$nameParent2LEER[$nr] = strtolower($inhalt[$this->ReadPropertyString("NameParentTabelle2TB")]);
+									  		$nameParent2LEER[$nr] = strtolower($this->Umlaute_Ersetzen($inhalt[$this->ReadPropertyString("NameParentTabelle2TB")]));
 									  }
 									  if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 										{
-									  		$nameParent3LEER[$nr] = strtolower($inhalt[$this->ReadPropertyString("NameParentTabelle3TB")]);
+									  		$nameParent3LEER[$nr] = strtolower($this->Umlaute_Ersetzen($inhalt[$this->ReadPropertyString("NameParentTabelle3TB")]));
 									  }
 								    $batterieLEER[$nr] = strtolower($inhalt["Batterie"]);
 								    $herstellerLEER[$nr] = strtolower($inhalt["Hersteller"]);
@@ -788,9 +788,9 @@ class BatterieMonitor extends IPSModule
 
 		private function HTMLausgabeGenerieren($BatterienAR, $AlleLeer)
 		{
-				$ParentName1Tabelle = $this->ReadPropertyString("NameParentTabelle1TB");
-				$ParentName2Tabelle = $this->ReadPropertyString("NameParentTabelle2TB");
-				$ParentName3Tabelle = $this->ReadPropertyString("NameParentTabelle3TB");
+				$ParentName1Tabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
+				$ParentName2Tabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
+				$ParentName3Tabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
 				$HintergrundFarbcode = $this->ReadPropertyString("HintergrundFarbcode");
 				$TextFarbcode = $this->ReadPropertyString("TextFarbcode");
 				$TextFarbcodeOK = $this->ReadPropertyString("TextOKFarbcode");
@@ -948,9 +948,9 @@ class BatterieMonitor extends IPSModule
 								return;
 						}
 				}
-				$ParentName1Tabelle = $this->ReadPropertyString("NameParentTabelle1TB");
-				$ParentName2Tabelle = $this->ReadPropertyString("NameParentTabelle2TB");
-				$ParentName3Tabelle = $this->ReadPropertyString("NameParentTabelle3TB");
+				$ParentName1Tabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
+				$ParentName2Tabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
+				$ParentName3Tabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
 				$BenachrichtigungsText = $this->ReadPropertyString("BatterieBenachrichtigungTEXT");
 
 				foreach ($Batterien_AR as $Aktor)
@@ -1090,9 +1090,9 @@ class BatterieMonitor extends IPSModule
     
     public function BenachrichtigungsTest()
     {
- 				$ParentName1Tabelle = $this->ReadPropertyString("NameParentTabelle1TB");
-				$ParentName2Tabelle = $this->ReadPropertyString("NameParentTabelle2TB");
-				$ParentName3Tabelle = $this->ReadPropertyString("NameParentTabelle3TB");
+ 				$ParentName1Tabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
+				$ParentName2Tabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
+				$ParentName3Tabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
  				
  				if (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
 				{
