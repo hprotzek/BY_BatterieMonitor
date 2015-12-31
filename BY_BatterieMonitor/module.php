@@ -621,15 +621,15 @@ class BatterieMonitor extends IPSModule
 							  $nameALLE[$nr] = strtolower($inhalt["Name"]);
 							  if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 								{
-							  		$nameParent1ALLE[$nr] = strtolower($this->Umlaute_Ersetzen($inhalt[$this->ReadPropertyString("NameParentTabelle1TB")]));
+							  		$nameParent1ALLE[$nr] = $this->Umlaute_Ersetzen(strtolower($inhalt[$this->ReadPropertyString("NameParentTabelle1TB")]));
 							  }
 							  if ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true)
 								{
-							  		$nameParent2ALLE[$nr] = strtolower($this->Umlaute_Ersetzen($inhalt[$this->ReadPropertyString("NameParentTabelle2TB")]));
+							  		$nameParent2ALLE[$nr] = $this->Umlaute_Ersetzen(strtolower($inhalt[$this->ReadPropertyString("NameParentTabelle2TB")]));
 							  }
 							  if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 								{
-							  		$nameParent3ALLE[$nr] = strtolower($this->Umlaute_Ersetzen($inhalt[$this->ReadPropertyString("NameParentTabelle3TB")]));
+							  		$nameParent3ALLE[$nr] = $this->Umlaute_Ersetzen(strtolower($inhalt[$this->ReadPropertyString("NameParentTabelle3TB")]));
 							  }
 						    $batterieALLE[$nr] = strtolower($inhalt["Batterie"]);
 						    $herstellerALLE[$nr] = strtolower($inhalt["Hersteller"]);
@@ -704,15 +704,15 @@ class BatterieMonitor extends IPSModule
 									  $nameLEER[$nr] = strtolower($inhalt["Name"]);
 									  if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 										{
-									  		$nameParent1LEER[$nr] = strtolower($this->Umlaute_Ersetzen($inhalt[$this->ReadPropertyString("NameParentTabelle1TB")]));
+									  		$nameParent1LEER[$nr] = $this->Umlaute_Ersetzen(strtolower($inhalt[$this->ReadPropertyString("NameParentTabelle1TB")]));
 									  }
 									  if ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true)
 										{
-									  		$nameParent2LEER[$nr] = strtolower($this->Umlaute_Ersetzen($inhalt[$this->ReadPropertyString("NameParentTabelle2TB")]));
+									  		$nameParent2LEER[$nr] = $this->Umlaute_Ersetzen(strtolower($inhalt[$this->ReadPropertyString("NameParentTabelle2TB")]));
 									  }
 									  if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 										{
-									  		$nameParent3LEER[$nr] = strtolower($this->Umlaute_Ersetzen($inhalt[$this->ReadPropertyString("NameParentTabelle3TB")]));
+									  		$nameParent3LEER[$nr] = $this->Umlaute_Ersetzen(strtolower($inhalt[$this->ReadPropertyString("NameParentTabelle3TB")]));
 									  }
 								    $batterieLEER[$nr] = strtolower($inhalt["Batterie"]);
 								    $herstellerLEER[$nr] = strtolower($inhalt["Hersteller"]);
