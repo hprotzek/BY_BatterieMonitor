@@ -891,20 +891,21 @@ class BatterieMonitor extends IPSModule
 										$HTML .= '<th class="tb-content'.$this->InstanceID.'">'.$Aktor["Hersteller"].'</th><th class="tb-content'.$this->InstanceID.'">'.$Aktor["ID"].'</th>';
 										if ($Aktor["Batterie"] == "OK")
 										{
-												$HTML .= '<th class="tb-contentOK'.$this->InstanceID.'">'.$Aktor["Batterie"].'</th><th class="tb-content'.$this->InstanceID.'">'.date("d.m.Y H:i", $Aktor["LetztesVarUpdateTimestamp"]).'Uhr</th></tr>';
+												$HTML .= '<th class="tb-contentOK'.$this->InstanceID.'">'.$Aktor["Batterie"].'</th>';
 										}
-										else
+										elseif ($Aktor["Batterie"] == "LEER")
 										{
-												$HTML .= '<th class="tb-contentLOW'.$this->InstanceID.'">'.$Aktor["Batterie"].'</th><th class="tb-content'.$this->InstanceID.'">'.date("d.m.Y H:i", $Aktor["LetztesVarUpdateTimestamp"]).'Uhr</th></tr>';
+												$HTML .= '<th class="tb-contentLOW'.$this->InstanceID.'">'.$Aktor["Batterie"].'</th>';
 										}
+										$HTML .= '<th class="tb-content'.$this->InstanceID.'">'.date("d.m.Y H:i", $Aktor["LetztesVarUpdateTimestamp"]).'Uhr</th></tr>';
 								}
-								$HTML .= '</table></html>';
-								$this->SetValueString("TabelleBatteryAlleVAR", $HTML);
 						}
 						else
 						{
 								$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'" colspan="'.$colspan.'">Keine Aktoren mit Batterien gefunden!</th></tr>';
 						}
+						$HTML .= '</table></html>';
+						$this->SetValueString("TabelleBatteryAlleVAR", $HTML);
 				}
 				elseif ($AlleLeer == "Leer") {
 						if (isset($BatterienAR["Leer"]))
@@ -1081,8 +1082,50 @@ class BatterieMonitor extends IPSModule
     
     public function BenachrichtigungsTest()
     {
- 				$TestAR[0] = array("Name" => "Test-Aktor", "Parent-Name1" => "1. OG", "Parent-Name2" => "Wohnzimmer", "Parent-Name3" => "Hauptgebäude", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
-    		$this->Benachrichtigung($TestAR);
+ 				$ParentName1Tabelle = $this->ReadPropertyString("NameParentTabelle1TB");
+				$ParentName2Tabelle = $this->ReadPropertyString("NameParentTabelle2TB");
+				$ParentName3Tabelle = $this->ReadPropertyString("NameParentTabelle3TB");
+ 				
+ 				if (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
+				{
+						$TestAR[0] = array("Name" => "Test-Aktor", $ParentName1Tabelle => "1. OG", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
+    				$this->Benachrichtigung($TestAR);
+				}
+				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
+				{
+						$TestAR[0] = array("Name" => "Test-Aktor", $ParentName2Tabelle => "Wohnzimmer", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
+    				$this->Benachrichtigung($TestAR);
+				}
+				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
+				{
+						$TestAR[0] = array("Name" => "Test-Aktor", $ParentName3Tabelle => "Hauptgebäude", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
+    				$this->Benachrichtigung($TestAR);
+				}
+				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
+				{
+						$TestAR[0] = array("Name" => "Test-Aktor", $ParentName1Tabelle => "1. OG", $ParentName2Tabelle => "Wohnzimmer", $ParentName3Tabelle => "Hauptgebäude", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
+    				$this->Benachrichtigung($TestAR);
+				}
+				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
+				{
+						$TestAR[0] = array("Name" => "Test-Aktor", $ParentName1Tabelle => "1. OG", $ParentName2Tabelle => "Wohnzimmer", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
+    				$this->Benachrichtigung($TestAR);
+				}
+				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
+				{
+						$TestAR[0] = array("Name" => "Test-Aktor", $ParentName2Tabelle => "Wohnzimmer", $ParentName3Tabelle => "Hauptgebäude", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
+    				$this->Benachrichtigung($TestAR);
+				}
+				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
+				{
+						$TestAR[0] = array("Name" => "Test-Aktor", $ParentName1Tabelle => "1. OG", $ParentName3Tabelle => "Hauptgebäude", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
+    				$this->Benachrichtigung($TestAR);
+				}
+				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
+				{
+						$TestAR[0] = array("Name" => "Test-Aktor", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
+    				$this->Benachrichtigung($TestAR);
+				}
    	}
    	
    	private function ParentIDermitteln($ParentNr, $InstanzID)

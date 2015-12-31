@@ -46,7 +46,7 @@
     { "type": "Label", "label": "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" },
     { "type": "Label", "label": "Text der als Benachrichtigung gesendet wird (es stehen verschiedene Variablen zur Verf�gung). Wird nichts aktiviert, findet keine" },
     { "type": "Label", "label": "Benachrichtigung statt! Gibt es gleichzeitig mehrere Aktoren mit leeren Batterien, wird der Text f�r jeden Aktor wiederholt." },
-    { "type": "Label", "label": "你KTORNAME, 你KTORPARENT, 你KTORHERSTELLER, 你KTORID, 你KTORBATTERIE, 你KTORLETZTESUPDATE" },
+    { "type": "Label", "label": "你KTORNAME, 你KTORPARENT1, 你KTORPARENT2, 你KTORPARENT3, 你KTORHERSTELLER, 你KTORID, 你KTORBATTERIE, 你KTORLETZTESUPDATE" },
     { "type": "CheckBox", "name": "BatterieBenachrichtigungCBOX", "caption": "Batterie-Warnung senden (Benachrichtigung, wenn ein Aktor eine leere Batterie meldet)" },
     { "type": "ValidationTextBox", "name": "BatterieBenachrichtigungTEXT", "caption": "Benachr. Text" },
     { "type": "Label", "label": "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" },

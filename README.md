@@ -31,11 +31,15 @@ Ihr könnt auch ein eigenes Skript festlegen, welches zur Benachrichtigung verwe
 leerer Batterie ausgeführt. Hier kann man dann Benachrichtigungen über Sonos, Enigma2-Nachricht, SMS, ... einrichten.
 Für eigene Aktionen stehen einem im ausgewählten Skript die folgenden Variablen zur Verfügung:
 ```
-$_IPS["BMON_Name"] (Name des Aktor), $_IPS["BMON_ParentName"] (Name des Parent-Objekt vom Aktor),
-$_IPS["BMON_Hersteller"] (Hersteller des Aktor), $_IPS["BMON_ID"] (ID/Serial des Aktor),
-$_IPS["BMON_Batterie"] (Batteriezustand OK/LEER),
-$_IPS["BMON_Text"] (Der Benachrichtigungstext inkl. "Übersetzung" der Variablen),
-$_IPS["BMON_LetztesUpdateTS"] (Datum und Uhrzeit, wann die Batterie-Variable zuletzt aktualisiert wurde),
+$_IPS["BMON_Name"] (Name des Aktor)
+$_IPS["BMON_ParentName1"] (Name des Parent-Objekt1 vom Aktor)
+$_IPS["BMON_ParentName2"] (Name des Parent-Objekt2 vom Aktor)
+$_IPS["BMON_ParentName3"] (Name des Parent-Objekt3 vom Aktor)
+$_IPS["BMON_Hersteller"] (Hersteller des Aktor)
+$_IPS["BMON_ID"] (ID/Serial des Aktor)
+$_IPS["BMON_Batterie"] (Batteriezustand OK/LEER)
+$_IPS["BMON_Text"] (Der Benachrichtigungstext inkl. "Übersetzung" der Variablen)
+$_IPS["BMON_LetztesUpdateTS"] (Datum und Uhrzeit, wann die Batterie-Variable zuletzt aktualisiert wurde)
 $_IPS["BMON_LetztesUpdateSEK"] (Sek. seit letzter Aktualisierung der Batterie-Variable)
 ```
 
@@ -102,3 +106,8 @@ Version 1.1:
 Version 1.2
   - NEU # Sortierung von Array und HTML-Tabellen einstellbar (nach Name, Parent-Name [wenn aktiv], Hersteller, ID, ...)
   - NEU # Test-Benachrichtigung (mit fiktiven Daten, aber eigenem Text) kann aus der Instanz gesendet werden
+
+Version 1.3
+  - NEU # Benachrichtigungsversand über Variable steuern (wenn Variable TRUE, dann Benachrichtigungen senden, wenn FALSE, dann nicht)
+  - NEU # Bis zu 3 Namen von Parent-Objekten können ausgelesen werden (z.B. Etage, Raum und Gebäude) und sind dann in Array und
+          den HTML-Tabellen verfügbar. Maximal kann man 9 Ebenen nach oben gehen, zum Auslesen der Namen.
