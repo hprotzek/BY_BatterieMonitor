@@ -24,7 +24,8 @@ Batterie-Aktoren in einer Tabelle dar und erzeugt eine 2. Tabelle mit allen Akto
 **Benachrichtigung**
 Je nachdem, ob eine Benachrichtigung per EMail/Push/Skript gewünscht ist, muss noch die entsprechende Instanz ausgewählt und auf aktiv
 gesetzt werden (Haken setzen). Eine Benachrichtigung erfolgt IMMER wenn eine leere Batterie erkannt wird! Wechselt ihr eine Batterie nicht,
-dann werdet ihr im Update-Intervall jeweils erneut benachrichtigt, bis die Batterien gewechselt wurden.
+dann werdet ihr im Update-Intervall jeweils erneut benachrichtigt, bis die Batterien gewechselt wurden. Außerdem könnt ihr eine Boolean-Variable
+definieren und damit die Benachrichtigungen steuern (Bool-Variable TRUE = Benachrichtigung, FALSE = keine Benachrichtigung).
 - Pro Aktor mit leerer Batterie wird eine Benachrichtigung gesendet! Bei 3 leeren Aktoren sind das 3 Benachrichtigungen!
 
 Ihr könnt auch ein eigenes Skript festlegen, welches zur Benachrichtigung verwendet wird. Dieses Skript wird bei Erkennung eines Aktor mit
@@ -61,7 +62,7 @@ Enigma2BY_SendMsg($Enigma2BYinstanzID, $_IPS["BMON_Text"], 3, 10); // Zeigt 10 S
 - Textausrichtung (links,zentriert,rechts)
 - Namen von bis zu 3 übergeordneten Objekten (Parents) + Anzeige in HTML-Tabelle
 - Aktualisierungsintervall (std. 21600 Sek = 6 Std)
-- Benachrichtigungseinstellungen
+- Benachrichtigungseinstellungen (Push-Nachricht, EMail, Skript)
 - Benachrichtigungsversand über Variable steuern (true=Benachrichtigung,false=keine Benachrichtigung) - z.B. IPS-Location-Variable "Ist es Tag"
 
 
