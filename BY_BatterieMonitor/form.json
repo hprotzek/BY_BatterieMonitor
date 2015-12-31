@@ -2,7 +2,7 @@
   "elements":
   [
 
-    { "type": "Label", "label": "####### BatterieMonitor v1.2 (30.12.2015 23.45Uhr) #######" },
+    { "type": "Label", "label": "####### BatterieMonitor v1.3 (31.12.2015 16.30Uhr) #######" },
     { "type": "Label", "label": "Aktuell unterstützte Hersteller: FHT, FS20 HMS, HomeMatic, Z-Wave" },
     { "type": "Label", "label": "Farbcode für Schriftfarbe und Hintergrundfarbe müssen im HEX-Format eingegeben werden:" },
     { "type": "ValidationTextBox", "name": "HintergrundFarbcode", "caption": "Hintergrundfarbe" },
@@ -49,6 +49,9 @@
     { "type": "Label", "label": "§AKTORNAME, §AKTORPARENT1, §AKTORPARENT2, §AKTORPARENT3, §AKTORHERSTELLER, §AKTORID, §AKTORBATTERIE, §AKTORLETZTESUPDATE" },
     { "type": "CheckBox", "name": "BatterieBenachrichtigungCBOX", "caption": "Batterie-Warnung senden (Benachrichtigung, wenn ein Aktor eine leere Batterie meldet)" },
     { "type": "ValidationTextBox", "name": "BatterieBenachrichtigungTEXT", "caption": "Benachr. Text" },
+    { "type": "Label", "label": "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" },
+    { "type": "Label", "label": "Hier kann eine Boolean-Variable ausgewählt werden (nur wenn diese TRUE ist, findet eine Benachrichtigung statt):" },
+    { "type": "SelectVariable", "name": "BenachrichtigungsVar", "caption": "Bool-Variable" },
     { "type": "Label", "label": "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" },
     { "type": "Label", "label": "WebFront-Instanz, welche für den Versand der Push-Nachrichten verwendet wird (gültige IPS-Subscription notwendig):" },
     { "type": "SelectInstance", "name": "WebFrontInstanceID", "caption": "WebFront-Instanz" },

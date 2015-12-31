@@ -59,9 +59,10 @@ Enigma2BY_SendMsg($Enigma2BYinstanzID, $_IPS["BMON_Text"], 3, 10); // Zeigt 10 S
 - Textfarbe LEER (HEX Farbcode)
 - Textgröße
 - Textausrichtung (links,zentriert,rechts)
-- Name des übergeordneten Objektes (Parent) + Anzeige in HTML-Tabelle
+- Namen von bis zu 3 übergeordneten Objekten (Parents) + Anzeige in HTML-Tabelle
 - Aktualisierungsintervall (std. 21600 Sek = 6 Std)
 - Benachrichtigungseinstellungen
+- Benachrichtigungsversand über Variable steuern (true=Benachrichtigung,false=keine Benachrichtigung) - z.B. IPS-Location-Variable "Ist es Tag"
 
 
 ## 2. Systemanforderungen
