@@ -21,7 +21,7 @@ class BatterieMonitor extends IPSModule
         $this->RegisterPropertyBoolean("NamenParentObjekt3CB", false);
         $this->RegisterPropertyString("NameParentTabelle1TB", "Etage");
         $this->RegisterPropertyString("NameParentTabelle2TB", "Raum");
-        $this->RegisterPropertyString("NameParentTabelle3TB", "Gebäude");
+        $this->RegisterPropertyString("NameParentTabelle3TB", "GebÃ¤ude");
         $this->RegisterPropertyInteger("ParentNr1NS", 1);
         $this->RegisterPropertyInteger("ParentNr2NS", 2);
         $this->RegisterPropertyInteger("ParentNr3NS", 3);
@@ -34,7 +34,7 @@ class BatterieMonitor extends IPSModule
         $this->RegisterPropertyBoolean("EMailMsgAktiv", false);
         $this->RegisterPropertyBoolean("EigenesSkriptAktiv", false);
         $this->RegisterPropertyBoolean("BatterieBenachrichtigungCBOX", false);
-        $this->RegisterPropertyString("BatterieBenachrichtigungTEXT", "Der Aktor -§AKTORNAME- vom Hersteller -§AKTORHERSTELLER- mit der ID -§AKTORID- hat eine leere Batterie!");
+        $this->RegisterPropertyString("BatterieBenachrichtigungTEXT", "Der Aktor -Â§AKTORNAME- vom Hersteller -Â§AKTORHERSTELLER- mit der ID -Â§AKTORID- hat eine leere Batterie!");
         $this->RegisterTimer("BMON_UpdateTimer", 0, 'BMON_Update($_IPS[\'TARGET\']);');
     }
 
@@ -615,7 +615,7 @@ class BatterieMonitor extends IPSModule
 
 				if (isset($Batterien_AR))
 				{
-						//Array sortieren, doppelte Einträge entfernen und neu durchnummerieren
+						//Array sortieren, doppelte EintrÃ¤ge entfernen und neu durchnummerieren
 						foreach ($Batterien_AR["Alle"] as $nr => $inhalt)
 						{
 							  $nameALLE[$nr] = strtolower($inhalt["Name"]);
@@ -974,49 +974,49 @@ class BatterieMonitor extends IPSModule
 						$AktorLetztesUpdateSEK = $Aktor["LetztesVarUpdateVorSek"];
 						$AktorLetztesUpdateTS = date("d.m.Y H:i", $Aktor["LetztesVarUpdateTimestamp"]);
 						
-						//Code-Wörter austauschen gegen gewünschte Werte
+						//Code-WÃ¶rter austauschen gegen gewÃ¼nschte Werte
 						if (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
 						{
-								$search = array("§AKTORNAME", "§AKTORPARENT1", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
+								$search = array("Â§AKTORNAME", "Â§AKTORPARENT1", "Â§AKTORHERSTELLER", "Â§AKTORID", "Â§AKTORBATTERIE", "Â§AKTORLETZTESUPDATE");
 								$replace = array($AktorName, $AktorParent1Name, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
 						}
 						elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
 						{
-								$search = array("§AKTORNAME", "§AKTORPARENT2", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
+								$search = array("Â§AKTORNAME", "Â§AKTORPARENT2", "Â§AKTORHERSTELLER", "Â§AKTORID", "Â§AKTORBATTERIE", "Â§AKTORLETZTESUPDATE");
 								$replace = array($AktorName, $AktorParent2Name, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
 						}
 						elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
 						{
-								$search = array("§AKTORNAME", "§AKTORPARENT3", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
+								$search = array("Â§AKTORNAME", "Â§AKTORPARENT3", "Â§AKTORHERSTELLER", "Â§AKTORID", "Â§AKTORBATTERIE", "Â§AKTORLETZTESUPDATE");
 								$replace = array($AktorName, $AktorParent3Name, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
 						}
 						elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
 						{
-								$search = array("§AKTORNAME", "§AKTORPARENT1", "§AKTORPARENT2", "§AKTORPARENT3", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
+								$search = array("Â§AKTORNAME", "Â§AKTORPARENT1", "Â§AKTORPARENT2", "Â§AKTORPARENT3", "Â§AKTORHERSTELLER", "Â§AKTORID", "Â§AKTORBATTERIE", "Â§AKTORLETZTESUPDATE");
 								$replace = array($AktorName, $AktorParent1Name, $AktorParent2Name, $AktorParent3Name, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
 						}
 						elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
 						{
-								$search = array("§AKTORNAME", "§AKTORPARENT1", "§AKTORPARENT2", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
+								$search = array("Â§AKTORNAME", "Â§AKTORPARENT1", "Â§AKTORPARENT2", "Â§AKTORHERSTELLER", "Â§AKTORID", "Â§AKTORBATTERIE", "Â§AKTORLETZTESUPDATE");
 								$replace = array($AktorName, $AktorParent1Name, $AktorParent2Name, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
 						}
 						elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
 						{
-								$search = array("§AKTORNAME", "§AKTORPARENT2", "§AKTORPARENT3", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
+								$search = array("Â§AKTORNAME", "Â§AKTORPARENT2", "Â§AKTORPARENT3", "Â§AKTORHERSTELLER", "Â§AKTORID", "Â§AKTORBATTERIE", "Â§AKTORLETZTESUPDATE");
 								$replace = array($AktorName, $AktorParent2Name, $AktorParent3Name, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
 						}
 						elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
 						{
-								$search = array("§AKTORNAME", "§AKTORPARENT1", "§AKTORPARENT3", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
+								$search = array("Â§AKTORNAME", "Â§AKTORPARENT1", "Â§AKTORPARENT3", "Â§AKTORHERSTELLER", "Â§AKTORID", "Â§AKTORBATTERIE", "Â§AKTORLETZTESUPDATE");
 								$replace = array($AktorName, $AktorParent1Name, $AktorParent3Name, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
 						}
 						elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
 						{
-								$search = array("§AKTORNAME", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
+								$search = array("Â§AKTORNAME", "Â§AKTORHERSTELLER", "Â§AKTORID", "Â§AKTORBATTERIE", "Â§AKTORLETZTESUPDATE");
 								$replace = array($AktorName, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
 						}
 						$Text = str_replace($search, $replace, $BenachrichtigungsText);
-						$Text = str_replace('Â', '', $Text);
+						$Text = str_replace('Ã‚', '', $Text);
 							
 						//PUSH-NACHRICHT
 						if ($this->ReadPropertyBoolean("PushMsgAktiv") == true)
@@ -1030,7 +1030,7 @@ class BatterieMonitor extends IPSModule
 		        				}
 		        				else
 		        				{
-		        					 IPS_LogMessage("BatterieMonitor", "FEHLER!!! - Die Textlänge einer Push-Nachricht darf maximal 256 Zeichen betragen!!!");
+		        					 IPS_LogMessage("BatterieMonitor", "FEHLER!!! - Die TextlÃ¤nge einer Push-Nachricht darf maximal 256 Zeichen betragen!!!");
 		        				}
 		        		}
 		        }
@@ -1081,7 +1081,7 @@ class BatterieMonitor extends IPSModule
 										}
 										elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
 										{
-												IPS_RunScriptEx($SkriptID, array("BMON_Name" => $AktorName, "BMON_ParentName1" => $AktorParent1Name, "BMON_Hersteller" => $AktorHersteller, "BMON_ID" => $AktorID, "BMON_Batterie" => $AktorBatterie, "BMON_Text" => $Text, "BMON_LetztesUpdateTS" => $AktorLetztesUpdateTS, "BMON_LetztesUpdateSEK" => $AktorLetztesUpdateSEK));
+												IPS_RunScriptEx($SkriptID, array("BMON_Name" => $AktorName, "BMON_Hersteller" => $AktorHersteller, "BMON_ID" => $AktorID, "BMON_Batterie" => $AktorBatterie, "BMON_Text" => $Text, "BMON_LetztesUpdateTS" => $AktorLetztesUpdateTS, "BMON_LetztesUpdateSEK" => $AktorLetztesUpdateSEK));
 										}
 		        		}		
 		        }
@@ -1106,12 +1106,12 @@ class BatterieMonitor extends IPSModule
 				}
 				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
 				{
-						$TestAR[0] = array("Name" => "Test-Aktor", $ParentName3Tabelle => "Hauptgebäude", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
+						$TestAR[0] = array("Name" => "Test-Aktor", $ParentName3Tabelle => "HauptgebÃ¤ude", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
     				$this->Benachrichtigung($TestAR);
 				}
 				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
 				{
-						$TestAR[0] = array("Name" => "Test-Aktor", $ParentName1Tabelle => "1. OG", $ParentName2Tabelle => "Wohnzimmer", $ParentName3Tabelle => "Hauptgebäude", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
+						$TestAR[0] = array("Name" => "Test-Aktor", $ParentName1Tabelle => "1. OG", $ParentName2Tabelle => "Wohnzimmer", $ParentName3Tabelle => "HauptgebÃ¤ude", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
     				$this->Benachrichtigung($TestAR);
 				}
 				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
@@ -1121,12 +1121,12 @@ class BatterieMonitor extends IPSModule
 				}
 				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
 				{
-						$TestAR[0] = array("Name" => "Test-Aktor", $ParentName2Tabelle => "Wohnzimmer", $ParentName3Tabelle => "Hauptgebäude", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
+						$TestAR[0] = array("Name" => "Test-Aktor", $ParentName2Tabelle => "Wohnzimmer", $ParentName3Tabelle => "HauptgebÃ¤ude", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
     				$this->Benachrichtigung($TestAR);
 				}
 				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
 				{
-						$TestAR[0] = array("Name" => "Test-Aktor", $ParentName1Tabelle => "1. OG", $ParentName3Tabelle => "Hauptgebäude", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
+						$TestAR[0] = array("Name" => "Test-Aktor", $ParentName1Tabelle => "1. OG", $ParentName3Tabelle => "HauptgebÃ¤ude", "Batterie" => "LEER", "Hersteller" => "HomeMatic", "ID" => "LEQ0123456", "LetztesVarUpdateTimestamp" => "1451169488", "LetztesVarUpdateVorSek" => "28800");
     				$this->Benachrichtigung($TestAR);
 				}
 				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
@@ -1176,7 +1176,7 @@ class BatterieMonitor extends IPSModule
 		
 		private function Umlaute_Ersetzen($String)
 		{
-				$Sonderzeichen = array("Ã¶" => "ö", "Ã¼" => "ü", "ÃŸ" => "ß", "Ã¤" => "ä", "Ã„" => "Ä", "Ãœ" => "Ü", "Ã–" => "Ö", "Ã©" => "Ë", "Ã©" => "é");
+				$Sonderzeichen = array("ÃƒÂ¶" => "Ã¶", "ÃƒÂ¼" => "Ã¼", "ÃƒÂŸ" => "ÃŸ", "ÃƒÂ¤" => "Ã¤", "ÃƒÂ„" => "Ã„", "ÃƒÂœ" => "Ãœ", "ÃƒÂ–" => "Ã–", "ÃƒÂ©" => "Ã‹", "ÃƒÂ©" => "Ã©");
 				$StringNEU = strtr($String, $Sonderzeichen);
 				return $StringNEU;
 		}
