@@ -16,6 +16,7 @@ class BatterieMonitor extends IPSModule
         $this->RegisterPropertyString("TextSize", "14");
         $this->RegisterPropertyString("TextAusrichtungDD", "mitte");
         $this->RegisterPropertyString("ArraySortierWert", "name");
+        $this->RegisterPropertyBoolean("NamenAktorObjektCB", true);
         $this->RegisterPropertyBoolean("NamenParentObjekt1CB", false);
         $this->RegisterPropertyBoolean("NamenParentObjekt2CB", false);
         $this->RegisterPropertyBoolean("NamenParentObjekt3CB", false);
@@ -822,61 +823,41 @@ class BatterieMonitor extends IPSModule
 				$HTML = '<html>'.$HTML_CSS_Style;
 				$HTML .= '<table class="bt">';
 
-				if (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
+				if ($this->ReadPropertyBoolean("NamenAktorObjektCB") == true)
 				{
-						$TitelAR = array("Aktor",$ParentName1Tabelle,"Hersteller","ID","Batterie","Letztes Var-Update");
-						$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[0].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[1].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[2].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[3].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[4].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[5].'</b></th></tr>';
-						$colspan = 6;
+						$TitelAR = array("Aktor");
 				}
-				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
+				if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 				{
-						$TitelAR = array("Aktor",$ParentName2Tabelle,"Hersteller","ID","Batterie","Letztes Var-Update");
-						$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[0].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[1].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[2].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[3].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[4].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[5].'</b></th></tr>';
-						$colspan = 6;
+						array_push($TitelAR,$ParentName1Tabelle);
 				}
-				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
+				if ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true)
 				{
-						$TitelAR = array("Aktor",$ParentName3Tabelle,"Hersteller","ID","Batterie","Letztes Var-Update");
-						$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[0].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[1].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[2].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[3].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[4].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[5].'</b></th></tr>';
-						$colspan = 6;
+						array_push($TitelAR,$ParentName2Tabelle);
 				}
-				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
+				if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 				{
-						$TitelAR = array("Aktor",$ParentName1Tabelle,$ParentName2Tabelle,$ParentName3Tabelle,"Hersteller","ID","Batterie","Letztes Var-Update");
-						$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[0].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[1].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[2].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[3].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[4].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[5].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[6].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[7].'</b></th></tr>';
-						$colspan = 8;
+						array_push($TitelAR,$ParentName3Tabelle);
 				}
-				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
+				
+				$HTML .= '<tr>';
+				$colspan = 1;
+				foreach ($TitelAR as $TitelText)
 				{
-						$TitelAR = array("Aktor",$ParentName1Tabelle,$ParentName2Tabelle,"Hersteller","ID","Batterie","Letztes Var-Update");
-						$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[0].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[1].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[2].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[3].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[4].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[5].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[6].'</b></th></tr>';
-						$colspan = 7;
+						$HTML .= '<th class="tb-title'.$this->InstanceID.'"><b>'.$TitelText.'</b></th>';
+						$colspan++;
 				}
-				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
-				{
-						$TitelAR = array("Aktor",$ParentName2Tabelle,$ParentName3Tabelle,"Hersteller","ID","Batterie","Letztes Var-Update");
-						$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[0].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[1].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[2].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[3].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[4].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[5].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[6].'</b></th></tr>';
-						$colspan = 7;
-				}
-				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
-				{
-						$TitelAR = array("Aktor",$ParentName1Tabelle,$ParentName3Tabelle,"Hersteller","ID","Batterie","Letztes Var-Update");
-						$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[0].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[1].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[2].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[3].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[4].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[5].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[6].'</b></th></tr>';
-						$colspan = 7;
-				}
-				elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
-				{
-						$TitelAR = array("Aktor","Hersteller","ID","Batterie","Letztes Var-Update");
-						$HTML .= '<tr><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[0].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[1].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[2].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[3].'</b></th><th class="tb-title'.$this->InstanceID.'"><b>'.$TitelAR[4].'</b></th></tr>';
-						$colspan = 5;
-				}
+				$HTML .= '</tr><tr>';
 
 				if ($AlleLeer == "Alle") {
 						if (isset($BatterienAR["Alle"]))
 						{
 								foreach ($BatterienAR["Alle"] as $Aktor)
 								{
-										$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'">'.$Aktor["Name"].'</th>';
+										if ($this->ReadPropertyBoolean("NamenAktorObjektCB") == true)
+										{
+												$HTML .= '<th class="tb-content'.$this->InstanceID.'">'.$Aktor["Name"].'</th>';
+										}
 										if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 										{
 												$HTML .= '<th class="tb-content'.$this->InstanceID.'">'.$Aktor[$ParentName1Tabelle].'</th>';
@@ -903,7 +884,7 @@ class BatterieMonitor extends IPSModule
 						}
 						else
 						{
-								$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'" colspan="'.$colspan.'">Keine Aktoren mit Batterien gefunden!</th></tr>';
+								$HTML .= '<th class="tb-content'.$this->InstanceID.'" colspan="'.$colspan.'">Keine Aktoren mit Batterien gefunden!</th></tr>';
 						}
 						$HTML .= '</table></html>';
 						$this->SetValueString("TabelleBatteryAlleVAR", $HTML);
@@ -913,7 +894,10 @@ class BatterieMonitor extends IPSModule
 						{
 								foreach ($BatterienAR["Leer"] as $Aktor)
 								{
-										$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'">'.$Aktor["Name"].'</th>';
+										if ($this->ReadPropertyBoolean("NamenAktorObjektCB") == true)
+										{
+												$HTML .= '<th class="tb-content'.$this->InstanceID.'">'.$Aktor["Name"].'</th>';
+										}
 										if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 										{
 												$HTML .= '<th class="tb-content'.$this->InstanceID.'">'.$Aktor[$ParentName1Tabelle].'</th>';
@@ -932,7 +916,7 @@ class BatterieMonitor extends IPSModule
 						}
 						else
 						{
-								$HTML .= '<tr><th class="tb-content'.$this->InstanceID.'" colspan="'.$colspan.'">Keine Aktoren mit leeren Batterien vorhanden!</th></tr>';
+								$HTML .= '<th class="tb-content'.$this->InstanceID.'" colspan="'.$colspan.'">Keine Aktoren mit leeren Batterien vorhanden!</th></tr>';
 						}
 						$HTML .= '</table></html>';
 						$this->SetValueString("TabelleBatteryLowVAR", $HTML);
