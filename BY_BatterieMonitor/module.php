@@ -860,6 +860,14 @@ class BatterieMonitor extends IPSModule
 								$TitelAR = array($ParentName3Tabelle);
 						}
 				}
+				if (isset($TitelAR))
+				{
+						array_push($TitelAR,"Hersteller","ID","Batterie","Letztes Var-Update");
+				}
+				else
+				{
+						$TitelAR = array("Hersteller","ID","Batterie","Letztes Var-Update");
+				}
 				
 				$HTML .= '<tr>';
 				$colspan = 1;
