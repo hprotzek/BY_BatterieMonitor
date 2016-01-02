@@ -829,15 +829,36 @@ class BatterieMonitor extends IPSModule
 				}
 				if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 				{
-						array_push($TitelAR,$ParentName1Tabelle);
+						if (isset($TitelAR))
+						{
+								array_push($TitelAR,$ParentName1Tabelle);
+						}
+						else
+						{
+								$TitelAR = array($ParentName1Tabelle);
+						}
 				}
 				if ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true)
 				{
-						array_push($TitelAR,$ParentName2Tabelle);
+						if (isset($TitelAR))
+						{
+								array_push($TitelAR,$ParentName2Tabelle);
+						}
+						else
+						{
+								$TitelAR = array($ParentName2Tabelle);
+						}
 				}
 				if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 				{
-						array_push($TitelAR,$ParentName3Tabelle);
+						if (isset($TitelAR))
+						{
+								array_push($TitelAR,$ParentName3Tabelle);
+						}
+						else
+						{
+								$TitelAR = array($ParentName3Tabelle);
+						}
 				}
 				
 				$HTML .= '<tr>';
@@ -959,45 +980,28 @@ class BatterieMonitor extends IPSModule
 						$AktorLetztesUpdateTS = date("d.m.Y H:i", $Aktor["LetztesVarUpdateTimestamp"]);
 						
 						//Code-Wörter austauschen gegen gewünschte Werte
-						if (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
+						$search = array("§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
+						$replace = array($AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
+			
+						if ($this->ReadPropertyBoolean("NamenAktorObjektCB") == true)
 						{
-								$search = array("§AKTORNAME", "§AKTORPARENT1", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
-								$replace = array($AktorName, $AktorParent1Name, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
+								array_push($search,"§AKTORNAME");
+								array_push($replace,$AktorName);
 						}
-						elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
+						if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true)
 						{
-								$search = array("§AKTORNAME", "§AKTORPARENT2", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
-								$replace = array($AktorName, $AktorParent2Name, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
+								array_push($search,"§AKTORPARENT1");
+								array_push($replace,$AktorParent1Name);
 						}
-						elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
+						if ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true)
 						{
-								$search = array("§AKTORNAME", "§AKTORPARENT3", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
-								$replace = array($AktorName, $AktorParent3Name, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
+								array_push($search,"§AKTORPARENT2");
+								array_push($replace,$AktorParent2Name);
 						}
-						elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
+						if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true)
 						{
-								$search = array("§AKTORNAME", "§AKTORPARENT1", "§AKTORPARENT2", "§AKTORPARENT3", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
-								$replace = array($AktorName, $AktorParent1Name, $AktorParent2Name, $AktorParent3Name, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
-						}
-						elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
-						{
-								$search = array("§AKTORNAME", "§AKTORPARENT1", "§AKTORPARENT2", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
-								$replace = array($AktorName, $AktorParent1Name, $AktorParent2Name, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
-						}
-						elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
-						{
-								$search = array("§AKTORNAME", "§AKTORPARENT2", "§AKTORPARENT3", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
-								$replace = array($AktorName, $AktorParent2Name, $AktorParent3Name, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
-						}
-						elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true))
-						{
-								$search = array("§AKTORNAME", "§AKTORPARENT1", "§AKTORPARENT3", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
-								$replace = array($AktorName, $AktorParent1Name, $AktorParent3Name, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
-						}
-						elseif (($this->ReadPropertyBoolean("NamenParentObjekt1CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == false) AND ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == false))
-						{
-								$search = array("§AKTORNAME", "§AKTORHERSTELLER", "§AKTORID", "§AKTORBATTERIE", "§AKTORLETZTESUPDATE");
-								$replace = array($AktorName, $AktorHersteller, $AktorID, $AktorBatterie, $AktorLetztesUpdateTS);
+								array_push($search,"§AKTORPARENT3");
+								array_push($replace,$AktorParent3Name);
 						}
 						$Text = str_replace($search, $replace, $BenachrichtigungsText);
 						$Text = str_replace('Â', '', $Text);
