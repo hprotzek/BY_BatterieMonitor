@@ -22,7 +22,7 @@ class BatterieMonitor extends IPSModule
         $this->RegisterPropertyBoolean("NamenParentObjekt3CB", false);
         $this->RegisterPropertyString("NameParentTabelle1TB", "Etage");
         $this->RegisterPropertyString("NameParentTabelle2TB", "Raum");
-        $this->RegisterPropertyString("NameParentTabelle3TB", "Gebäude");
+        $this->RegisterPropertyString("NameParentTabelle3TB", "Gebaeude");
         $this->RegisterPropertyInteger("ParentNr1NS", 1);
         $this->RegisterPropertyInteger("ParentNr2NS", 2);
         $this->RegisterPropertyInteger("ParentNr3NS", 3);
