@@ -452,8 +452,96 @@ class BatterieMonitor extends IPSModule
                     $VarLastUpdated = $Var["VariableUpdated"];
                     $VarLastUpdatedDiffSek = time() - $VarLastUpdated;
                     $DeviceID = substr(IPS_GetProperty($InstanzID, "Address"), 0, -2);
-                    $LowBat = GetValueInt($VarID);
+                    $LowBat = GetValueInteger($VarID);
                     if ($LowBat === 6) {
+                        $Batterien_AR["Alle"][$a]["Name"] = $this->Umlaute_Ersetzen(IPS_GetName($InstanzID));
+                        if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) {
+                            $ParentID = $this->ParentIDermitteln("ParentNr1NS", $InstanzID);
+                            $ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
+                            $Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
+
+                        }
+                        if ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) {
+
+                            $ParentID = $this->ParentIDermitteln("ParentNr2NS", $InstanzID);
+                            $ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
+                            $Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
+                        }
+                        if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true) {
+                            $ParentID = $this->ParentIDermitteln("ParentNr3NS", $InstanzID);
+                            $ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
+                            $Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
+                        }
+                        $Batterien_AR["Alle"][$a]["Batterie"] = "LEER";
+                        $Batterien_AR["Alle"][$a]["Hersteller"] = $InstanzHersteller;
+                        $Batterien_AR["Alle"][$a]["ID"] = $DeviceID;
+                        $Batterien_AR["Alle"][$a]["Hersteller_ID"] = $InstanzHersteller . " - " . $DeviceID;
+                        $Batterien_AR["Alle"][$a]["LetztesVarUpdateTimestamp"] = $VarLastUpdated;
+                        $Batterien_AR["Alle"][$a]["LetztesVarUpdateVorSek"] = $VarLastUpdatedDiffSek;
+                        $Batterien_AR["Leer"][$l]["Name"] = $this->Umlaute_Ersetzen(IPS_GetName($InstanzID));
+                        if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) {
+                            $ParentID = $this->ParentIDermitteln("ParentNr1NS", $InstanzID);
+                            $ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
+                            $Batterien_AR["Leer"][$l][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
+
+                        }
+                        if ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) {
+
+                            $ParentID = $this->ParentIDermitteln("ParentNr2NS", $InstanzID);
+                            $ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
+                            $Batterien_AR["Leer"][$l][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
+                        }
+                        if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true) {
+                            $ParentID = $this->ParentIDermitteln("ParentNr3NS", $InstanzID);
+                            $ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
+                            $Batterien_AR["Leer"][$l][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
+                        }
+                        $Batterien_AR["Leer"][$l]["Batterie"] = "LEER";
+                        $Batterien_AR["Leer"][$l]["Hersteller"] = $InstanzHersteller;
+                        $Batterien_AR["Leer"][$l]["ID"] = $DeviceID;
+                        $Batterien_AR["Leer"][$l]["Hersteller_ID"] = $InstanzHersteller . " - " . $DeviceID;
+                        $Batterien_AR["Leer"][$l]["LetztesVarUpdateTimestamp"] = $VarLastUpdated;
+                        $Batterien_AR["Leer"][$l]["LetztesVarUpdateVorSek"] = $VarLastUpdatedDiffSek;
+                        $a++;
+                        $l++;
+                    } else {
+                        $Batterien_AR["Alle"][$a]["Name"] = $this->Umlaute_Ersetzen(IPS_GetName($InstanzID));
+                        if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) {
+                            $ParentID = $this->ParentIDermitteln("ParentNr1NS", $InstanzID);
+                            $ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle1TB"));
+                            $Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
+
+                        }
+                        if ($this->ReadPropertyBoolean("NamenParentObjekt2CB") == true) {
+
+                            $ParentID = $this->ParentIDermitteln("ParentNr2NS", $InstanzID);
+                            $ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle2TB"));
+                            $Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
+                        }
+                        if ($this->ReadPropertyBoolean("NamenParentObjekt3CB") == true) {
+                            $ParentID = $this->ParentIDermitteln("ParentNr3NS", $InstanzID);
+                            $ParentNameTabelle = $this->Umlaute_Ersetzen($this->ReadPropertyString("NameParentTabelle3TB"));
+                            $Batterien_AR["Alle"][$a][$ParentNameTabelle] = $this->Umlaute_Ersetzen(IPS_GetName($ParentID));
+                        }
+                        $Batterien_AR["Alle"][$a]["Batterie"] = "OK";
+                        $Batterien_AR["Alle"][$a]["Hersteller"] = $InstanzHersteller;
+                        $Batterien_AR["Alle"][$a]["ID"] = $DeviceID;
+                        $Batterien_AR["Alle"][$a]["Hersteller_ID"] = $InstanzHersteller . " - " . $DeviceID;
+                        $Batterien_AR["Alle"][$a]["LetztesVarUpdateTimestamp"] = $VarLastUpdated;
+                        $Batterien_AR["Alle"][$a]["LetztesVarUpdateVorSek"] = $VarLastUpdatedDiffSek;
+                        $a++;
+                    }
+                }
+
+                //HomeMatic ERROR
+                $VarID = @IPS_GetObjectIDByIdent('ERROR', $InstanzID);
+                if (($VarID !== false) AND ($InstanzHersteller == "HomeMatic")) {
+                    $Var = IPS_GetVariable($VarID);
+                    $VarLastUpdated = $Var["VariableUpdated"];
+                    $VarLastUpdatedDiffSek = time() - $VarLastUpdated;
+                    $DeviceID = substr(IPS_GetProperty($InstanzID, "Address"), 0, -2);
+                    $LowBat = GetValueInteger($VarID);
+                    if ($LowBat !== 0) {
                         $Batterien_AR["Alle"][$a]["Name"] = $this->Umlaute_Ersetzen(IPS_GetName($InstanzID));
                         if ($this->ReadPropertyBoolean("NamenParentObjekt1CB") == true) {
                             $ParentID = $this->ParentIDermitteln("ParentNr1NS", $InstanzID);
